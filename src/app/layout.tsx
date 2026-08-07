@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 export async function generateMetadata(): Promise<Metadata> {
   const branding = await getBrandingSettings();
   return {
-    metadataBase: new URL("https://digdrivingschool.co.uk"),
+    metadataBase: new URL("https://drivinginstructorgloucester.co.uk"),
     title: "Dig Driving School",
     description: "Modern driving lessons with a DVSA-approved instructor. Manual and automatic tuition, 7 days a week. Book your first lesson today.",
     // Installable web-app (PWA) so it can be added to the home screen.

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { cmsPages } from "@/lib/cms-pages";
 
-const BASE_URL = "https://digdrivingschool.co.uk";
+const BASE_URL = "https://drivinginstructorgloucester.co.uk";
 
 // Pages we don't want in Google's index (orphaned duplicate of /prices).
 const EXCLUDE = new Set(["/lessons"]);

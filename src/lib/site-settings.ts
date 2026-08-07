@@ -26,7 +26,7 @@ export const contactDefaults: ContactSettings = {
   // Placeholders only — the owner overwrites these in Admin → Settings.
   address: "Your area",
   phone: "",
-  email: "hello@digdrivingschool.co.uk",
+  email: "hello@drivinginstructorgloucester.co.uk",
   hours: "Mon–Sun, 8am–7pm",
 };
 

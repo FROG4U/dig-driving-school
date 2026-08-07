@@ -11,13 +11,12 @@
 export const SITE = {
   /** Brand name as it appears in titles and meta descriptions. */
   name: "Dig Driving School",
-  // ⚠️ PLACEHOLDERS — replace these four before the site goes live.
   /** Primary town / city the school operates in. */
-  location: "YOUR TOWN",
+  location: "Gloucester",
   /** Wider county or region used for county-level SEO pages. */
-  county: "YOUR COUNTY",
+  county: "Gloucestershire",
   /** Nearby towns used to generate extra location landing pages. */
-  nearbyTowns: ["Nearby Town A", "Nearby Town B", "Nearby Town C"],
+  nearbyTowns: ["Cheltenham", "Stroud", "Tewkesbury"],
   /** Public site URL, used for sitemap and canonical links. */
-  url: "https://digdrivingschool.co.uk",
+  url: "https://drivinginstructorgloucester.co.uk",
 } as const;

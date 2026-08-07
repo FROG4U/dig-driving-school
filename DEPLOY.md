@@ -18,7 +18,7 @@ Plesk / IONOS, code hosted on **GitHub**, auto-deployed on every push to `main`.
 
 ## One-time server setup (Plesk)
 
-1. **Create the domain/subdomain** in Plesk (e.g. `digdrivingschool.co.uk`).
+1. **Create the domain/subdomain** in Plesk (e.g. `drivinginstructorgloucester.co.uk`).
    You can point the real domain at it later via DNS — no rebuild needed.
 
 2. **Node.js app** in Plesk (Websites & Domains → Node.js):
@@ -31,7 +31,7 @@ Plesk / IONOS, code hosted on **GitHub**, auto-deployed on every push to `main`.
      NODE_ENV=production
      # Email (optional — enquiries still save without it):
      RESEND_API_KEY=<from resend.com, or leave blank>
-     EMAIL_FROM=Dig Driving School <hello@digdrivingschool.co.uk>
+     EMAIL_FROM=Dig Driving School <hello@drivinginstructorgloucester.co.uk>
      OWNER_EMAIL=<inbox that receives enquiry notifications>
      ```
 
@@ -61,7 +61,7 @@ Actions → New repository secret):
 | `SSH_USER` | your SSH / Plesk system user |
 | `SSH_KEY` | the **private** SSH key whose public key is on the server |
 | `SSH_PORT` | usually `22` |
-| `APP_PATH` | absolute path to the app, e.g. `/var/www/vhosts/digdrivingschool.co.uk/httpdocs` |
+| `APP_PATH` | absolute path to the app, e.g. `/var/www/vhosts/drivinginstructorgloucester.co.uk/httpdocs` |
 
 After that, `.github/workflows/deploy.yml` runs on every push to `main`:
 **pull → install → migrate → build → restart.** Fully automatic.
