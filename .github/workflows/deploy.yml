@@ -1,0 +1,41 @@
+name: Deploy to server
+
+# TRUE auto-deploy: every push to main SSHes into the Plesk server, pulls the
+# code, installs, runs DB migrations, rebuilds, and restarts the app — no manual
+# steps. Content edited in /dds (the admin panel) is already live instantly; this
+# handles code/design changes.
+#
+# Set these repo secrets first (GitHub → Settings → Secrets and variables → Actions):
+#   SSH_HOST   e.g. your-server.com  (or the IONOS server IP)
+#   SSH_USER   your SSH / Plesk system user
+#   SSH_KEY    the PRIVATE SSH key (whose public key is on the server)
+#   SSH_PORT   usually 22
+#   APP_PATH   absolute path to the app on the server,
+#              e.g. /var/www/vhosts/digdrivingschool.co.uk/httpdocs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            set -e
+            cd ${{ secrets.APP_PATH }}
+            git pull origin main
+            npm ci
+            npx prisma migrate deploy
+            npm run build
+            # Restart Passenger (Plesk) by touching the restart file:
+            mkdir -p tmp && touch tmp/restart.txt
+            echo "✓ Dig Driving School deployed"

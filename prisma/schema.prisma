@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Enquiry {
+  id            String   @id @default(cuid())
+  fullName      String
+  contactNumber String
+  email         String
+  location      String
+  message       String
+  status        String   @default("new")
+  createdAt     DateTime @default(now())
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+}
+
+model Competitor {
+  id           String   @id @default(cuid())
+  name         String
+  url          String
+  metaTitle    String?
+  metaDesc     String?
+  h1Tags       String?  // JSON array stored as string
+  h2Tags       String?  // JSON array stored as string
+  topKeywords  String?  // JSON object: { keywords, bigrams, trigrams, extras }
+  pageTitle    String?
+  lastScanned  DateTime?
+  createdAt    DateTime @default(now())
+}
+
+model PageSeo {
+  slug         String   @id
+  metaTitle    String?
+  metaDesc     String?
+  h1           String?
+  focusKeyword String?
+  keywords     String?  // comma-separated
+  notes        String?
+  updatedAt    DateTime @updatedAt
+}
+
+model PageView {
+  id        String   @id @default(cuid())
+  slug      String
+  referrer  String?
+  sessionId String
+  device    String?  // "mobile" | "tablet" | "desktop"
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([slug])
+  @@index([sessionId])
+}
+
+// Editable page content, one row per (page, section). `data` is a JSON blob
+// whose shape depends on the section type defined in src/lib/cms-pages.ts.
+model PageSection {
+  slug       String   // page path, e.g. "/", "/about"
+  sectionKey String   // section id within the page, e.g. "banner"
+  data       String   // JSON object of the section's editable fields
+  enabled    Boolean  @default(true)
+  updatedAt  DateTime @updatedAt
+
+  @@id([slug, sectionKey])
+  @@index([slug])
+}
+
+// Uploaded + compressed media files stored under /public/uploads.
+model MediaAsset {
+  id           String   @id @default(cuid())
+  url          String   // public path, e.g. /uploads/abc.webp
+  filename     String
+  mimeType     String
+  width        Int?
+  height       Int?
+  sizeBytes    Int      // size after compression
+  originalSize Int?     // size before compression
+  createdAt    DateTime @default(now())
+
+  @@index([createdAt])
+}
