@@ -138,7 +138,7 @@ const homeCta: SectionSchema = {
     eyebrow: "GET STARTED TODAY",
     heading: "ready to get behind the wheel?",
     text: "Book your first lesson today. Picked up from your door, seven days a week.",
-    offer: "First 2 manual lessons £55 · Automatic £65",
+    offer: "Manual lessons £35/hr · Automatic £40/hr",
   },
 };
 
@@ -217,7 +217,7 @@ const homeSeo: SectionSchema = {
     eyebrow: `Driving lessons in ${SITE.location}`,
     heading: `Your local driving school in ${SITE.location}`,
     body: `Dig Driving School provides friendly, professional driving lessons in ${SITE.location} and across ${SITE.county}. Whether you're a complete beginner booking your very first lesson or a nervous driver coming back after a break, our DVSA-approved driving instructor teaches both manual and automatic driving lessons at a pace that suits you.`,
-    body2: `We offer beginner lessons, refresher lessons, intensive driving courses, motorway tuition and theory test support — all with door-to-door pick-up, seven days a week. With structured lessons and a genuine focus on helping you pass your driving test first time, we get learner drivers across ${SITE.location} on the road with confidence. Block-booking discounts are available.`,
+    body2: `We offer manual and automatic driving lessons, refresher sessions and theory test support — all with door-to-door pick-up, seven days a week. With structured lessons and a genuine focus on helping you pass your driving test first time, we get learner drivers across ${SITE.location} on the road with confidence. 10-hour block bookings are available.`,
   },
 };
 

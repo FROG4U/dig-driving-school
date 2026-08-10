@@ -7,46 +7,41 @@ import { SITE } from "@/lib/site-config";
 
 const packages = [
   {
-    name: "Introductory offer",
-    price: "£55",
-    unit: "first 2 manual lessons",
-    icon: "sparkle",
-    features: ["2 hours in total", "Built for first-timers", "No commitment afterwards", "Car provided"],
-  },
-  {
-    name: "Standard manual lesson",
-    price: "£40",
+    name: "Manual lesson",
+    price: "£35",
     unit: "per hour",
     icon: "wrench",
     popular: true,
-    features: ["1 or 2-hour sessions", "Move at your own pace", "Flexible scheduling", "Full feedback every time"],
+    features: ["Full-control manual car", "1 or 2-hour sessions", "Move at your own pace", "Full feedback every time"],
   },
   {
-    name: "Block booking",
-    price: "£390",
-    unit: "10 manual hours · save £10",
+    name: "Automatic lesson",
+    price: "£40",
+    unit: "per hour",
+    icon: "automatic",
+    features: ["No clutch, no gears", "Focus on road skills", "1 or 2-hour sessions", "Full feedback every time"],
+  },
+  {
+    name: "Manual 10-hour block",
+    price: "£360",
+    unit: "block booking",
     icon: "calendar",
-    features: ["10 hours pre-paid", "Works out at £39 an hour", "Book the slots that suit you", "Progress tracked throughout"],
+    features: ["10 hours pre-paid", "Valid for 3 months", "Book the slots that suit you", "Progress tracked throughout"],
   },
   {
-    name: "Intensive course",
-    price: "from £860",
-    unit: "20 hours incl. test fee",
-    icon: "target",
-    features: ["Manual and automatic", "Practical test fee included", "Fast-track to your test", "Flexible scheduling"],
+    name: "Automatic 10-hour block",
+    price: "£400",
+    unit: "block booking",
+    icon: "calendar",
+    features: ["10 hours pre-paid", "Valid for 3 months", "Book the slots that suit you", "Progress tracked throughout"],
   },
 ];
 
 const addOns = [
   {
-    name: "Automatic lessons",
-    price: "£45 / hour",
-    desc: "First 2 automatic lessons £65, or a block of 10 hours for £440. No clutch and no gears, so you can put everything into road position and hazard awareness.",
-  },
-  {
-    name: "Motorway & refresher sessions",
-    price: "£80",
-    desc: "A 2-hour session for drivers coming back to the road after a break, or anyone who wants to build confidence at higher speeds.",
+    name: "Refresher & returning drivers",
+    price: "Hourly rate",
+    desc: "Coming back to the road after a break, or want to build confidence at higher speeds? Book refresher sessions at the standard manual or automatic hourly rate.",
   },
   {
     name: "Theory test preparation",
@@ -133,8 +128,8 @@ export default async function Lessons() {
               <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)" }}>pick the shape that fits you</h2>
             </div>
             <p style={{ color: "#94a5c0", maxWidth: "42ch", fontSize: "1rem", lineHeight: 1.7 }}>
-              Start with a taster, take it hour by hour, save with a block, or clear the whole thing in
-              one intensive stretch. Every option includes pick-up from where you are.
+              Take it hour by hour, or book a 10-hour block — in a manual or automatic car. Every
+              option includes door-to-door pick-up from wherever you are.
             </p>
           </div>
 

@@ -10,33 +10,18 @@ import Icon from "@/components/Icon";
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/prices", {
     title: `Driving Lesson Prices ${SITE.location} | Dig Driving School`,
-    description: `Clear driving lesson prices in ${SITE.location}. Manual from £40/hr, automatic from £45/hr, first 2 manual lessons £55. Block bookings and intensive courses available.`,
+    description: `Clear driving lesson prices in ${SITE.location}. Manual lessons £35/hr, automatic £40/hr. 10-hour block bookings available. Door-to-door pick-up, seven days a week.`,
   });
 }
 
 const manualStandard = [
-  { label: "First 2 lessons", price: "£55", note: "introductory offer" },
-  { label: "Standard lesson", price: "£40", note: "1 hour" },
-  { label: "Block of 10 hours", price: "£390", note: "save £10" },
-  { label: "Motorway & refreshers", price: "£80", note: "2 hours" },
+  { label: "Single lesson", price: "£35", note: "per hour" },
+  { label: "10-hour block", price: "£360", note: "block booking" },
 ];
 
 const autoStandard = [
-  { label: "First 2 lessons", price: "£65", note: "introductory offer" },
-  { label: "Standard lesson", price: "£45", note: "1 hour" },
-  { label: "Block of 10 hours", price: "£440", note: "save £10" },
-];
-
-const intensiveManual = [
-  { hours: "40 hours", price: "£1,660", highlight: true },
-  { hours: "30 hours", price: "£1,260", highlight: false },
-  { hours: "20 hours", price: "£860", highlight: false },
-];
-
-const intensiveAuto = [
-  { hours: "40 hours", price: "£1,860", highlight: true },
-  { hours: "30 hours", price: "£1,410", highlight: false },
-  { hours: "20 hours", price: "£960", highlight: false },
+  { label: "Single lesson", price: "£40", note: "per hour" },
+  { label: "10-hour block", price: "£400", note: "block booking" },
 ];
 
 const notes = [
@@ -46,7 +31,6 @@ const notes = [
   "Pick-up from home, work, college or school is included in every price.",
   "We confirm your exact pick-up area with you before the first booking.",
   "Every price includes the use of our dual-control car, fully insured and maintained.",
-  "Theory test revision support is included with every intensive course.",
 ];
 
 /** Dark price list — rows separated by rules, price right-aligned in volt. */
@@ -104,56 +88,6 @@ function PriceList({
             </div>
             <span className="numeral" style={{ color: "#f47c20", fontSize: "1.5rem", whiteSpace: "nowrap" }}>
               {row.price}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/** Light intensive-course list, used on the paper section. */
-function IntensiveList({
-  rows,
-  title,
-  icon,
-}: {
-  rows: { hours: string; price: string; highlight: boolean }[];
-  title: string;
-  icon: string;
-}) {
-  return (
-    <div>
-      <div style={{ display: "flex", alignItems: "center", gap: "0.7rem", marginBottom: "1.25rem" }}>
-        <span style={{ color: "#070d18", display: "inline-flex" }}>
-          <Icon name={icon} size={20} />
-        </span>
-        <h3 style={{ fontSize: "1.28rem", color: "#070d18" }}>{title}</h3>
-      </div>
-
-      <div>
-        {rows.map((c) => (
-          <div
-            key={c.hours}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: "1.25rem",
-              borderTop: "1px solid rgba(7,13,24,0.14)",
-              padding: "1.35rem 0",
-            }}
-          >
-            <div>
-              <div style={{ fontFamily: "var(--font-montserrat), sans-serif", fontWeight: 700, letterSpacing: "-0.03em", fontSize: "1.15rem", color: "#070d18" }}>
-                {c.hours}
-              </div>
-              <div style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.66rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "#5a6b86", marginTop: "0.35rem" }}>
-                {c.highlight ? "incl. test fee · most popular" : "incl. practical test fee"}
-              </div>
-            </div>
-            <span className="numeral" style={{ fontSize: "clamp(1.6rem, 4vw, 2.1rem)", color: "#070d18", whiteSpace: "nowrap" }}>
-              {c.price}
             </span>
           </div>
         ))}
@@ -221,7 +155,7 @@ export default async function Prices() {
               <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)" }}>standard lessons</h2>
             </div>
             <p style={{ color: "#94a5c0", maxWidth: "42ch", fontSize: "1rem", lineHeight: 1.7 }}>
-              Pay lesson by lesson, or put a block down and save. Every price already includes us
+              Pay lesson by lesson, or book a 10-hour block. Every price already includes us
               collecting you from wherever you are in {SITE.location}.
             </p>
           </div>
@@ -229,34 +163,6 @@ export default async function Prices() {
           <div className="grid gap-8" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))" }}>
             <PriceList title="manual lessons" icon="wrench" rows={manualStandard} />
             <PriceList title="automatic lessons" icon="automatic" rows={autoStandard} />
-          </div>
-        </div>
-      </section>
-
-      {/* ══ INTENSIVE COURSES — on paper ════════════════════════ */}
-      <section style={{ background: "#f4f6fa", color: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
-        <div className="max-w-[1240px] mx-auto px-5">
-          <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.7rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#5a6b86", marginBottom: "1.25rem" }}>
-            FAST TRACK
-          </p>
-          <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)", color: "#070d18", marginBottom: "1.5rem", maxWidth: "18ch" }}>
-            intensive courses
-          </h2>
-          <p style={{ color: "#46566f", fontSize: "1rem", lineHeight: 1.7, maxWidth: "56ch", marginBottom: "3.25rem" }}>
-            For learners who would rather do it in one concentrated push. Every course price includes
-            the practical driving test fee.
-          </p>
-
-          <div className="grid gap-10" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))" }}>
-            <IntensiveList title="manual intensive" icon="car" rows={intensiveManual} />
-            <IntensiveList title="automatic intensive" icon="automatic" rows={intensiveAuto} />
-          </div>
-
-          <div style={{ borderTop: "1px solid rgba(7,13,24,0.14)", marginTop: "3rem", paddingTop: "2.5rem" }}>
-            <Link href="/enquiry" className="btn btn-dark">
-              Check intensive availability
-              <span aria-hidden>→</span>
-            </Link>
           </div>
         </div>
       </section>
