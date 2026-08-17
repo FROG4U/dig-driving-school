@@ -82,3 +82,5 @@ After that, `.github/workflows/deploy.yml` runs on every push to `main`:
   server (or delete the two rows and re-seed).
 - Enter the real phone, email, address, hours, socials and logo in
   **`/dds` → Settings** after first login.
+
+# auto-deploy verified 4da132a
