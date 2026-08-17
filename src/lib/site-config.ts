@@ -16,7 +16,7 @@ export const SITE = {
   /** Wider county or region used for county-level SEO pages. */
   county: "Gloucestershire",
   /** Nearby towns used to generate extra location landing pages. */
-  nearbyTowns: ["Hartpury", "Cheltenham", "Stroud", "Tewkesbury"],
+  nearbyTowns: ["Hartpury"],
   /** Public site URL, used for sitemap and canonical links. */
   url: "https://drivinginstructorgloucester.co.uk",
 } as const;
