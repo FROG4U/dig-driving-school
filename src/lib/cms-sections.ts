@@ -214,7 +214,7 @@ const homeSeo: SectionSchema = {
     { key: "body2", label: "Paragraph 2", type: "textarea" },
   ],
   defaults: {
-    eyebrow: `Driving lessons in ${SITE.location}`,
+    eyebrow: `Driving lessons in ${SITE.location} & Hartpury`,
     heading: `Your local driving school in ${SITE.location} and Hartpury`,
     body: `Dig Driving School provides friendly, professional driving lessons in ${SITE.location}, Hartpury and across ${SITE.county}. Whether you're a complete beginner booking your very first lesson or a nervous driver coming back after a break, our DVSA-approved driving instructor teaches both manual and automatic driving lessons at a pace that suits you.`,
     body2: `We offer manual and automatic driving lessons, refresher sessions and theory test support — all with door-to-door pick-up, seven days a week. With structured lessons and a genuine focus on helping you pass your driving test first time, we get learner drivers across ${SITE.location} on the road with confidence. 10-hour block bookings are available.`,
