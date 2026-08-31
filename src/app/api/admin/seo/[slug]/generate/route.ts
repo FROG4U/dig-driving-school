@@ -9,7 +9,7 @@ type PageConfig = {
   name: string;
   location?: string;
   service: string;
-  pageType: "homepage" | "location" | "prices" | "about" | "theory" | "qa" | "contact" | "auto-manual" | "enquiry";
+  pageType: "homepage" | "location" | "prices" | "about" | "theory" | "qa" | "contact" | "auto-manual" | "enquiry" | "lessons" | "links";
   defaultH1: string;
   defaultH2s: string[];
   extraKeywords: string[];
@@ -45,6 +45,22 @@ const CONTENT_CONFIGS: Record<string, PageConfig> = {
       `Serving ${SITE.location} & Surrounding Areas`,
     ],
     extraKeywords: [`DVSA approved instructor ${SITE.location.toLowerCase()}`, `driving instructor ${SITE.location.toLowerCase()}`, "qualified driving teacher", `ADI ${SITE.location.toLowerCase()}`],
+  },
+  "/lessons": {
+    name: "Lessons",
+    location: `${SITE.location}`,
+    service: "driving lessons",
+    pageType: "lessons",
+    defaultH1: `Driving Lessons in ${SITE.location} - Manual & Automatic`,
+    defaultH2s: [
+      "Manual Driving Lessons",
+      "Automatic Driving Lessons",
+      "10-Hour Block Bookings",
+      "Refresher & Returning Drivers",
+      "Theory Test Preparation",
+      "What To Expect In Your First Lesson",
+    ],
+    extraKeywords: [`driving lessons ${SITE.location.toLowerCase()}`, `manual driving lessons ${SITE.location.toLowerCase()}`, `automatic driving lessons ${SITE.location.toLowerCase()}`, `intensive driving course ${SITE.location.toLowerCase()}`],
   },
   "/prices": {
     name: "Prices",
@@ -104,6 +120,21 @@ const CONTENT_CONFIGS: Record<string, PageConfig> = {
       "Lesson Types & Prices",
     ],
     extraKeywords: [`driving lesson questions ${SITE.location.toLowerCase()}`, "how many lessons to pass", "when can I book driving test", "driving school FAQ"],
+  },
+  "/useful-links": {
+    name: "Useful Links",
+    location: `${SITE.location}`,
+    service: "learner driver resources",
+    pageType: "links",
+    defaultH1: "Useful Links For Learner Drivers",
+    defaultH2s: [
+      "Get Yourself Licensed",
+      "Book Your Tests",
+      "Learn The Rules",
+      "Driving Test Costs",
+      "Find A Test Centre",
+    ],
+    extraKeywords: ["provisional licence application", "book theory test", "book practical driving test", "highway code", `driving test centre ${SITE.location.toLowerCase()}`],
   },
   "/contact": {
     name: "Contact",
@@ -199,6 +230,8 @@ function buildTitle(cfg: typeof PAGE_CONFIGS[string], topKw: string): string {
   if (cfg.pageType === "qa") return truncate(`Driving Lesson FAQs ${loc} | Dig Driving School`, 65);
   if (cfg.pageType === "contact") return truncate(`Book Driving Lessons ${loc} | Contact Dig`, 65);
   if (cfg.pageType === "enquiry") return truncate(`Book Your Driving Lesson in ${loc} | Dig Driving School`, 65);
+  if (cfg.pageType === "lessons") return truncate(`Driving Lessons ${loc} | Manual & Automatic | Dig`, 65);
+  if (cfg.pageType === "links") return truncate(`Useful Links For Learner Drivers | Dig Driving School`, 65);
   if (cfg.pageType === "auto-manual") return truncate(`Automatic vs Manual Lessons ${loc} | Dig Driving School`, 65);
   return truncate(`${cfg.name} | Dig Driving School ${loc}`, 65);
 }
@@ -217,6 +250,8 @@ function buildDescription(cfg: typeof PAGE_CONFIGS[string], keywords: string[]):
     qa: `Got questions about ${kw1} in ${loc}? Find answers to the most common driving lesson questions - costs, timings, test booking & more. Dig Driving School.`,
     contact: `Get in touch with Dig Driving School ${loc}. Book ${kw1}, ask about ${kw2} or request more info. Available 7 days a week - call or use our online form.`,
     enquiry: `Request ${kw1} with Dig Driving School ${loc}. Fill in our quick enquiry form - we'll get back to you within 24 hours to arrange your first lesson.`,
+    lessons: `Manual and automatic ${kw1} in ${loc} with a DVSA-approved instructor. Hourly lessons, 10-hour blocks, refresher courses and theory test help. Book today.`,
+    links: `Handy links for learner drivers in ${loc}: apply for a provisional licence, book your theory and practical tests, find a test centre and read the Highway Code.`,
     "auto-manual": `Not sure whether to choose ${kw1} in ${loc}? We explain the pros, cons and costs of both. Manual and automatic lessons available - book with Dig today.`,
   };
 
