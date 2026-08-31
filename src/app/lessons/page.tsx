@@ -1,9 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Icon from "@/components/Icon";
+import { getPageMetadata } from "@/lib/seo";
 import { getBanner, bannerBg } from "@/lib/content";
 import { getCmsPage } from "@/lib/cms-pages";
 import { getContactSettings } from "@/lib/site-settings";
 import { SITE } from "@/lib/site-config";
+
+// This page had no metadata export at all, so it inherited the generic site
+// title and ignored its own SEO record - the same stale "orphaned page"
+// assumption that had also kept it out of the sitemap.
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/lessons", {
+    title: `Driving Lessons in ${SITE.location} | Manual & Automatic`,
+    description: `Manual and automatic driving lessons in ${SITE.location} with a DVSA-approved instructor. Hourly lessons, 10-hour blocks, refresher courses and theory test support.`,
+  });
+}
 
 const packages = [
   {
