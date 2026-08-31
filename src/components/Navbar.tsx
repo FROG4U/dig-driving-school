@@ -59,7 +59,7 @@ export default function Navbar({ logoUrl }: { logoUrl?: string }) {
               <img
                 src={logoUrl}
                 alt="Dig Driving School"
-                style={{ height: "46px", width: "auto", display: "block" }}
+                style={{ height: "54px", width: "auto", display: "block" }}
               />
             ) : (
               <>
