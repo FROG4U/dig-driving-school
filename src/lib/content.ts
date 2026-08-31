@@ -30,9 +30,39 @@ export async function getSection<T extends object>(
   }
 }
 
-/** Convenience wrapper for the "banner" section every page has. */
-export function getBanner(slug: string, fallback: BannerData): Promise<BannerData> {
-  return getSection<BannerData>(slug, "banner", fallback);
+/**
+ * Convenience wrapper for the "banner" section every page has.
+ *
+ * The hero heading is the page's <h1>, so its precedence is:
+ *   1. a heading typed into Admin -> Content for this page (explicit wins)
+ *   2. the H1 set in Admin -> Pages -> Edit SEO, so that field really is the
+ *      page's <h1> rather than a note that renders nowhere
+ *   3. the built-in default in cms-pages.ts
+ */
+export async function getBanner(slug: string, fallback: BannerData): Promise<BannerData> {
+  let cms: Partial<BannerData> = {};
+  let seoH1: string | null = null;
+
+  try {
+    const [rec, seo] = await Promise.all([
+      prisma.pageSection.findUnique({ where: { slug_sectionKey: { slug, sectionKey: "banner" } } }),
+      prisma.pageSeo.findUnique({ where: { slug } }),
+    ]);
+    if (rec?.enabled) {
+      try {
+        cms = JSON.parse(rec.data) as Partial<BannerData>;
+      } catch {
+        cms = {};
+      }
+    }
+    seoH1 = seo?.h1?.trim() || null;
+  } catch {
+    // DB not available - fall back to the built-in content below.
+  }
+
+  const banner: BannerData = { ...fallback, ...cms };
+  if (!cms.heading?.trim() && seoH1) banner.heading = seoH1;
+  return banner;
 }
 
 /**

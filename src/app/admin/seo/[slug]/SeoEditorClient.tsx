@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { SITE } from "@/lib/site-config";
 import { toSlugParam } from "@/lib/slug";
+import { keywordAppearsIn } from "@/lib/keyword-match";
 
 interface SeoData {
   metaTitle: string;
@@ -228,7 +229,7 @@ export default function SeoEditorClient({
               <input value={form.h1} onChange={(e) => update("h1", e.target.value)}
                 placeholder={`e.g. Driving Lessons in ${SITE.location}`}
                 style={{ width: "100%", padding: "0.55rem 0.75rem", border: "1px solid #c3c4c7", borderRadius: "3px", fontSize: "0.9rem", color: "#1d2327", backgroundColor: "#fff", boxSizing: "border-box" }} />
-              <div style={{ fontSize: "0.72rem", color: "#8c8f94", marginTop: "0.3rem" }}>Should match or be close to your meta title. Must include your primary keyword.</div>
+              <div style={{ fontSize: "0.72rem", color: "#8c8f94", marginTop: "0.3rem" }}>This is the big headline shown at the top of the page, so write it for people as well as Google. Include your primary keyword. If you have typed a hero heading for this page in Content, that one wins.</div>
             </div>
 
             {/* H2 Suggestions */}
@@ -263,9 +264,9 @@ export default function SeoEditorClient({
               {form.focusKeyword && (
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginTop: "0.7rem" }}>
                   {[
-                    { label: "In title", check: form.metaTitle.toLowerCase().includes(form.focusKeyword.toLowerCase()) },
-                    { label: "In description", check: form.metaDesc.toLowerCase().includes(form.focusKeyword.toLowerCase()) },
-                    { label: "In H1", check: form.h1.toLowerCase().includes(form.focusKeyword.toLowerCase()) },
+                    { label: "In title", check: keywordAppearsIn(form.focusKeyword, form.metaTitle) },
+                    { label: "In description", check: keywordAppearsIn(form.focusKeyword, form.metaDesc) },
+                    { label: "In H1", check: keywordAppearsIn(form.focusKeyword, form.h1) },
                   ].map((item) => (
                     <span key={item.label} style={{ fontSize: "0.75rem", fontWeight: 600, backgroundColor: item.check ? "#e6f4ea" : "#fce8e8", color: item.check ? "#1e7e34" : "#c0392b", border: `1px solid ${item.check ? "#b8dfc0" : "#f5c2c2"}`, borderRadius: "3px", padding: "0.2rem 0.55rem" }}>
                       {item.check ? "✓" : "✗"} {item.label}
@@ -335,9 +336,9 @@ export default function SeoEditorClient({
               { label: "Description good length (100–165)", check: form.metaDesc.length >= 100 && form.metaDesc.length <= 165 },
               { label: "H1 heading set", check: form.h1.length > 0 },
               { label: "Focus keyword set", check: form.focusKeyword.length > 0 },
-              { label: "Keyword in title", check: form.focusKeyword.length > 0 && form.metaTitle.toLowerCase().includes(form.focusKeyword.toLowerCase()) },
-              { label: "Keyword in description", check: form.focusKeyword.length > 0 && form.metaDesc.toLowerCase().includes(form.focusKeyword.toLowerCase()) },
-              { label: "Keyword in H1", check: form.focusKeyword.length > 0 && form.h1.toLowerCase().includes(form.focusKeyword.toLowerCase()) },
+              { label: "Keyword in title", check: keywordAppearsIn(form.focusKeyword, form.metaTitle) },
+              { label: "Keyword in description", check: keywordAppearsIn(form.focusKeyword, form.metaDesc) },
+              { label: "Keyword in H1", check: keywordAppearsIn(form.focusKeyword, form.h1) },
               { label: "Additional keywords added", check: form.keywords.length > 0 },
             ].map((item) => {
               const done = item.check;

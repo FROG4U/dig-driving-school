@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getAdminUser } from "@/lib/auth";
 import { fromSlugParam } from "@/lib/slug";
+import { keywordAppearsIn } from "@/lib/keyword-match";
 import { SITE } from "@/lib/site-config";
 
 // ─── Page configs ──────────────────────────────────────────────────────────
@@ -126,7 +127,7 @@ const CONTENT_CONFIGS: Record<string, PageConfig> = {
     location: `${SITE.location}`,
     service: "learner driver resources",
     pageType: "links",
-    defaultH1: "Useful Links For Learner Drivers",
+    defaultH1: `Useful Links For Learner Drivers In ${SITE.location}`,
     defaultH2s: [
       "Get Yourself Licensed",
       "Book Your Tests",
@@ -134,7 +135,7 @@ const CONTENT_CONFIGS: Record<string, PageConfig> = {
       "Driving Test Costs",
       "Find A Test Centre",
     ],
-    extraKeywords: ["provisional licence application", "book theory test", "book practical driving test", "highway code", `driving test centre ${SITE.location.toLowerCase()}`],
+    extraKeywords: [`learner drivers ${SITE.location.toLowerCase()}`, "provisional licence application", "book theory test", "book practical driving test", "highway code", `driving test centre ${SITE.location.toLowerCase()}`],
   },
   "/contact": {
     name: "Contact",
@@ -303,7 +304,16 @@ export async function POST(
     slug
   );
 
-  const focusKeyword = relevantKws[0] || cfg.extraKeywords[0] || `driving lessons ${cfg.location || `${SITE.location.toLowerCase()}`}`;
+  // The H1 is the page's visible headline, so prefer a focus keyword the H1
+  // actually contains - otherwise the page is scored against a phrase that
+  // appears nowhere on it. Falls back to the strongest keyword if none fit.
+  const h1Text = cfg.defaultH1;
+  const focusKeyword =
+    relevantKws.find((kw) => keywordAppearsIn(kw, h1Text)) ||
+    cfg.extraKeywords.find((kw) => keywordAppearsIn(kw, h1Text)) ||
+    relevantKws[0] ||
+    cfg.extraKeywords[0] ||
+    `driving lessons ${cfg.location || `${SITE.location.toLowerCase()}`}`;
   const topKw = competitorPhrases[0] || cfg.extraKeywords[0] || "driving lessons";
 
   const metaTitle = buildTitle(cfg, topKw);
