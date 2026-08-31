@@ -144,6 +144,49 @@ function wordCount(text: string): number {
   return (text.match(/\b[a-z]+\b/g) || []).length;
 }
 
+// ─── Fetching ─────────────────────────────────────────────────────────────
+
+/**
+ * Browser identities to try, in order.
+ *
+ * Some small-business hosts run a crude bot rule that blocks any user-agent
+ * mentioning Chrome - dbdrivingschoolglos.co.uk answers 403 to every Chrome UA
+ * (even one sent with full sec-ch-ua client hints) while returning 200 to
+ * Safari, Firefox, Googlebot and no user-agent at all. Leading with Safari and
+ * falling back through the list gets those sites scanned instead of showing the
+ * owner an unexplained 403.
+ */
+const USER_AGENTS = [
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+  "Mozilla/5.0 (Windows NT 10.0; rv:133.0) Gecko/20100101 Firefox/133.0",
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+];
+
+/** Statuses that usually mean "we didn't like your client", so worth a retry. */
+const RETRYABLE = new Set([401, 403, 406, 429]);
+
+async function fetchCompetitorPage(url: string): Promise<Response> {
+  let last: Response | undefined;
+
+  for (const ua of USER_AGENTS) {
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent": ua,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-GB,en;q=0.5",
+      },
+      signal: AbortSignal.timeout(20000),
+    });
+
+    if (res.ok) return res;
+    last = res;
+    // A real error (404, 500, ...) will not change with a different UA.
+    if (!RETRYABLE.has(res.status)) break;
+  }
+
+  return last as Response;
+}
+
 // ─── Route ────────────────────────────────────────────────────────────────
 
 export async function POST(
@@ -159,17 +202,14 @@ export async function POST(
   if (!competitor) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   try {
-    const res = await fetch(competitor.url, {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-GB,en;q=0.5",
-      },
-      signal: AbortSignal.timeout(20000),
-    });
+    const res = await fetchCompetitorPage(competitor.url);
 
     if (!res.ok) {
-      return NextResponse.json({ error: `Site returned ${res.status}` }, { status: 502 });
+      const reason =
+        res.status === 403 || res.status === 401
+          ? `Site returned ${res.status} - it is blocking automated visits, so its keywords cannot be read`
+          : `Site returned ${res.status}`;
+      return NextResponse.json({ error: reason }, { status: 502 });
     }
 
     const html = await res.text();
