@@ -116,7 +116,9 @@ export default function SeoEditorClient({
 
   const previewTitle = form.metaTitle || `${pageTitle} | Dig Driving School`;
   const previewDesc = form.metaDesc || `Professional driving lessons in ${SITE.location} and surrounding areas.`;
-  const previewUrl = `digds.co.uk${slug}`;
+  // Show the real domain - a hardcoded one made the preview a poor guide to how
+  // the snippet actually looks in Google.
+  const previewUrl = `${SITE.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}${slug === "/" ? "" : slug}`;
 
   if (loading) return <div style={{ color: "#50575e", padding: "2rem" }}>Loading SEO data…</div>;
 
