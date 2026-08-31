@@ -2,7 +2,7 @@ import { redirect, notFound } from "next/navigation";
 import { getAdminUser } from "@/lib/auth";
 import AdminShell from "@/components/admin/AdminShell";
 import { getCmsPage } from "@/lib/cms-pages";
-import { decodeSlug } from "@/lib/slug";
+import { fromSlugParam } from "@/lib/slug";
 import { getBanner, getSection } from "@/lib/content";
 import { getPageSectionSchemas } from "@/lib/cms-sections";
 import ContentEditorClient from "./ContentEditorClient";
@@ -16,7 +16,7 @@ export default async function ContentEditorPage({
   const user = await getAdminUser();
   if (!user) redirect("/dds");
 
-  const slug = decodeSlug((await params).slug);
+  const slug = fromSlugParam((await params).slug);
   const page = getCmsPage(slug);
   if (!page) notFound();
 

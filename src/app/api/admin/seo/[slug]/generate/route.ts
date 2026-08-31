@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getAdminUser } from "@/lib/auth";
-import { decodeSlug } from "@/lib/slug";
+import { fromSlugParam } from "@/lib/slug";
 import { SITE } from "@/lib/site-config";
 
 // ─── Page configs ──────────────────────────────────────────────────────────
@@ -235,7 +235,7 @@ export async function POST(
   if (user.role !== "SUPER_ADMIN") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const rawSlug = (await params).slug;
-  const slug = decodeSlug(rawSlug);
+  const slug = fromSlugParam(rawSlug);
 
   const cfg = PAGE_CONFIGS[slug];
   if (!cfg) return NextResponse.json({ error: "Page not configured" }, { status: 400 });

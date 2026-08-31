@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { getAdminUser } from "@/lib/auth";
 import AdminShell from "@/components/admin/AdminShell";
 import SeoEditorClient from "./SeoEditorClient";
-import { decodeSlug } from "@/lib/slug";
+import { fromSlugParam } from "@/lib/slug";
 import { sitePages } from "@/lib/admin-pages";
 
 
@@ -16,7 +16,7 @@ export default async function SeoEditorPage({
   if (user.role !== "SUPER_ADMIN") redirect("/admin/dashboard");
 
   const rawSlug = (await params).slug;
-  const decoded = decodeSlug(rawSlug);
+  const decoded = fromSlugParam(rawSlug);
   const pageInfo = sitePages.find((p) => p.slug === decoded) ?? { title: decoded, slug: decoded, type: "Page" };
 
   return (

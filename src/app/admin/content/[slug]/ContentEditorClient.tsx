@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useRef } from "react";
 import type { BannerData } from "@/lib/content";
+import { toSlugParam } from "@/lib/slug";
 
 interface Props {
   slug: string;
@@ -54,7 +55,7 @@ export default function ContentEditorClient({ slug, title, initialBanner }: Prop
     setSaving(true);
     setError(null);
     try {
-      const res = await fetch(`/api/admin/content/${encodeURIComponent(slug)}`, {
+      const res = await fetch(`/api/admin/content/${toSlugParam(slug)}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sectionKey: "banner", data: banner }),

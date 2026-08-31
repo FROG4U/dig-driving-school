@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getAdminUser } from "@/lib/auth";
-import { decodeSlug } from "@/lib/slug";
+import { fromSlugParam } from "@/lib/slug";
 
 function superAdminOnly(user: Awaited<ReturnType<typeof getAdminUser>>) {
   if (!user) return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
@@ -19,7 +19,7 @@ export async function GET(
 
   const rawSlug = (await params).slug;
   // slug is URL-encoded, e.g. "locations-gloucester" → "/locations/gloucester"
-  const slug = decodeSlug(rawSlug);
+  const slug = fromSlugParam(rawSlug);
 
   const seo = await prisma.pageSeo.findUnique({ where: { slug } });
   return NextResponse.json(seo ?? { slug });
@@ -34,7 +34,7 @@ export async function PUT(
   if (err) return err;
 
   const rawSlug = (await params).slug;
-  const slug = decodeSlug(rawSlug);
+  const slug = fromSlugParam(rawSlug);
   const body = await req.json();
 
   const seo = await prisma.pageSeo.upsert({

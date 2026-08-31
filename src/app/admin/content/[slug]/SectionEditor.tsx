@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { SectionSchema, SectionField, SimpleField } from "@/lib/cms-sections";
 import Icon, { iconNames } from "@/components/Icon";
+import { toSlugParam } from "@/lib/slug";
 
 interface Props {
   slug: string;
@@ -66,7 +67,7 @@ export default function SectionEditor({ slug, schema, index, initialData }: Prop
     setSaving(true);
     setError(null);
     try {
-      const res = await fetch(`/api/admin/content/${encodeURIComponent(slug)}`, {
+      const res = await fetch(`/api/admin/content/${toSlugParam(slug)}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sectionKey: schema.key, data }),

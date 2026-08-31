@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { sitePages as ALL_PAGES } from "@/lib/admin-pages";
+import { toSlugParam } from "@/lib/slug";
 
 
 type PageStatus = "idle" | "running" | "done" | "error";
@@ -29,13 +30,21 @@ export default function GenerateAllClient() {
       setResults((prev) => ({ ...prev, [page.slug]: { slug: page.slug, status: "running" } }));
 
       try {
-        const res = await fetch(`/api/admin/seo/${encodeURIComponent(page.slug)}/generate`, { method: "POST" });
+        const res = await fetch(`/api/admin/seo/${toSlugParam(page.slug)}/generate`, { method: "POST" });
         if (res.ok) {
           const data = await res.json();
           setResults((prev) => ({ ...prev, [page.slug]: { slug: page.slug, status: "done", metaTitle: data.metaTitle } }));
         } else {
-          const d = await res.json();
-          setResults((prev) => ({ ...prev, [page.slug]: { slug: page.slug, status: "error", error: d.error || "Failed" } }));
+          // An error page from the proxy is HTML, not JSON - reading it as JSON
+          // used to throw and get reported as a misleading "Network error".
+          let msg = `Failed (HTTP ${res.status})`;
+          try {
+            const d = await res.json();
+            if (d?.error) msg = d.error;
+          } catch {
+            /* non-JSON body - keep the status code, it is the useful part */
+          }
+          setResults((prev) => ({ ...prev, [page.slug]: { slug: page.slug, status: "error", error: msg } }));
         }
       } catch {
         setResults((prev) => ({ ...prev, [page.slug]: { slug: page.slug, status: "error", error: "Network error" } }));
@@ -170,7 +179,7 @@ export default function GenerateAllClient() {
               {/* Edit link */}
               {isDone && (
                 <Link
-                  href={`/admin/seo/${encodeURIComponent(page.slug)}`}
+                  href={`/admin/seo/${toSlugParam(page.slug)}`}
                   style={{ fontSize: "0.75rem", color: "#2271b1", textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0 }}
                 >
                   Edit →

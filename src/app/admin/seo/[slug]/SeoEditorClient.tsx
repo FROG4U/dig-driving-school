@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { SITE } from "@/lib/site-config";
+import { toSlugParam } from "@/lib/slug";
 
 interface SeoData {
   metaTitle: string;
@@ -44,7 +45,7 @@ export default function SeoEditorClient({
   const [generateInfo, setGenerateInfo] = useState<{ competitorCount: number; keywordsUsed: number } | null>(null);
   const [showGenerateBanner, setShowGenerateBanner] = useState(false);
 
-  const encodedSlug = encodeURIComponent(slug);
+  const encodedSlug = toSlugParam(slug);
 
   const load = useCallback(async () => {
     try {

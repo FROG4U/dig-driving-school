@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getAdminUser } from "@/lib/auth";
 import { getCmsPage } from "@/lib/cms-pages";
-import { decodeSlug } from "@/lib/slug";
+import { fromSlugParam } from "@/lib/slug";
 
 function requireAdmin(user: Awaited<ReturnType<typeof getAdminUser>>) {
   if (!user) return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
@@ -19,7 +19,7 @@ export async function GET(
   const err = requireAdmin(user);
   if (err) return err;
 
-  const slug = decodeSlug((await params).slug);
+  const slug = fromSlugParam((await params).slug);
   const page = getCmsPage(slug);
   if (!page) return NextResponse.json({ error: "Unknown page" }, { status: 404 });
 
@@ -48,7 +48,7 @@ export async function PUT(
   const err = requireAdmin(user);
   if (err) return err;
 
-  const slug = decodeSlug((await params).slug);
+  const slug = fromSlugParam((await params).slug);
   const page = getCmsPage(slug);
   if (!page) return NextResponse.json({ error: "Unknown page" }, { status: 404 });
 

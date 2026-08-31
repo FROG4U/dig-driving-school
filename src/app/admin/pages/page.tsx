@@ -4,6 +4,7 @@ import { getAdminUser } from "@/lib/auth";
 import AdminShell from "@/components/admin/AdminShell";
 import { prisma } from "@/lib/prisma";
 import { sitePages } from "@/lib/admin-pages";
+import { toSlugParam } from "@/lib/slug";
 
 
 export default async function PagesAdmin() {
@@ -106,7 +107,7 @@ export default async function PagesAdmin() {
                   <td style={{ padding: "0.85rem 1.25rem" }}>
                     {isSuperAdmin ? (
                       <Link
-                        href={`/admin/seo/${encodeURIComponent(page.slug)}`}
+                        href={`/admin/seo/${toSlugParam(page.slug)}`}
                         style={{ fontWeight: 700, color: "#2271b1", fontSize: "0.92rem", textDecoration: "none", display: "block", marginBottom: "0.15rem" }}
                       >
                         {page.title}
@@ -126,7 +127,7 @@ export default async function PagesAdmin() {
                     <div style={{ fontSize: "0.75rem", marginTop: "0.3rem", display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
                       <a href={page.slug} target="_blank" rel="noreferrer" style={{ color: "#2271b1", textDecoration: "none" }}>View ↗</a>
                       {isSuperAdmin && (
-                        <Link href={`/admin/seo/${encodeURIComponent(page.slug)}`} style={{ color: "#7c3aed", textDecoration: "none", fontWeight: 600 }}>Edit SEO</Link>
+                        <Link href={`/admin/seo/${toSlugParam(page.slug)}`} style={{ color: "#7c3aed", textDecoration: "none", fontWeight: 600 }}>Edit SEO</Link>
                       )}
                     </div>
                   </td>
@@ -186,7 +187,7 @@ export default async function PagesAdmin() {
                             <span>⚠</span> No SEO
                           </span>
                           <Link
-                            href={`/admin/seo/${encodeURIComponent(page.slug)}`}
+                            href={`/admin/seo/${toSlugParam(page.slug)}`}
                             style={{ fontSize: "0.72rem", color: "#7c3aed", textDecoration: "none", fontWeight: 600, display: "block", marginTop: "0.25rem" }}
                           >
                             → Generate now
@@ -200,7 +201,7 @@ export default async function PagesAdmin() {
                   {isSuperAdmin && (
                     <td style={{ padding: "0.85rem 1.25rem 0.85rem 0", textAlign: "right", verticalAlign: "middle" }}>
                       <Link
-                        href={`/admin/seo/${encodeURIComponent(page.slug)}`}
+                        href={`/admin/seo/${toSlugParam(page.slug)}`}
                         style={{
                           display: "inline-block",
                           backgroundColor: hasSeo ? "#f6f7f7" : "#7c3aed",

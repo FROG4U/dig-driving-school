@@ -4,6 +4,7 @@ import { getAdminUser } from "@/lib/auth";
 import AdminShell from "@/components/admin/AdminShell";
 import { prisma } from "@/lib/prisma";
 import { cmsPages } from "@/lib/cms-pages";
+import { toSlugParam } from "@/lib/slug";
 
 export default async function ContentAdmin() {
   const user = await getAdminUser();
@@ -34,7 +35,7 @@ export default async function ContentAdmin() {
           return (
             <Link
               key={p.slug}
-              href={`/admin/content/${encodeURIComponent(p.slug)}`}
+              href={`/admin/content/${toSlugParam(p.slug)}`}
               style={{
                 display: "block",
                 backgroundColor: "#fff",
