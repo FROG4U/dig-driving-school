@@ -193,7 +193,9 @@ const aboutInstructorPhoto: SectionSchema = {
     { key: "imageUrl", label: "Photo of the instructor / car", type: "image" },
   ],
   defaults: {
-    imageUrl: "",
+    // Stand-in so the slot is not an empty grey panel. Replace it with a real
+    // photo of Dig and the car in Admin -> Content, which overrides this.
+    imageUrl: "/banners/instructor.jpg",
   },
 };
 
