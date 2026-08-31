@@ -52,7 +52,7 @@ export default async function ContactLayout({ children }: { children: React.Reac
               <p className="eyebrow" style={{ marginBottom: "1.5rem" }}>Talk to us</p>
               <h2 style={{ fontSize: "1.6rem", marginBottom: "1rem" }}>Straight through to your instructor</h2>
               <p style={{ color: "#94a5c0", fontSize: "0.95rem", lineHeight: 1.7, marginBottom: "2.25rem" }}>
-                No call centre and no waiting list &mdash; the person who answers is the person
+                No call centre and no waiting list - the person who answers is the person
                 who&apos;ll be sat next to you in the car.
               </p>
 

@@ -68,7 +68,7 @@ export default function Contact() {
         </span>
         <h2 style={{ fontSize: "1.9rem", marginBottom: "1rem" }}>Enquiry sent</h2>
         <p style={{ color: "#94a5c0", fontSize: "1rem", lineHeight: 1.7, maxWidth: "48ch" }}>
-          Thanks{form.name ? `, ${form.name}` : ""} &mdash; we&apos;ve got it. We&apos;ll be in touch within
+          Thanks{form.name ? `, ${form.name}` : ""} - we&apos;ve got it. We&apos;ll be in touch within
           24 hours to confirm your lesson and sort out pick-up details.
         </p>
       </div>

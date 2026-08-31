@@ -62,7 +62,7 @@ export default function EnquiryPage() {
         </span>
         <h2 style={{ fontSize: "1.9rem", marginBottom: "1rem" }}>Enquiry received</h2>
         <p style={{ color: "#94a5c0", fontSize: "1rem", lineHeight: 1.7, maxWidth: "48ch" }}>
-          Thanks{form.fullName ? `, ${form.fullName}` : ""} &mdash; that&apos;s with us. We&apos;ll be
+          Thanks{form.fullName ? `, ${form.fullName}` : ""} - that&apos;s with us. We&apos;ll be
           in touch within 24 hours to talk through lessons and find you a slot.
         </p>
       </div>
