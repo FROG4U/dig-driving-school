@@ -81,6 +81,18 @@ export async function POST(req: NextRequest) {
     // Asset is on disk and usable even if the catalogue insert fails - don't block.
   }
 
+  // Under Passenger/Next in production, only public/ files that existed when the
+  // app started are served - a freshly uploaded image 404s until the app
+  // restarts. Touch the Passenger restart trigger so the new file is served
+  // right away. Best-effort: the upload has already succeeded regardless.
+  try {
+    const tmpDir = path.join(process.cwd(), "tmp");
+    await mkdir(tmpDir, { recursive: true });
+    await writeFile(path.join(tmpDir, "restart.txt"), String(Date.now()));
+  } catch {
+    // ignore - image is saved; it will appear after the next restart or deploy
+  }
+
   return NextResponse.json({
     url,
     width,
