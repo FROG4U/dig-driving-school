@@ -2,7 +2,7 @@
  * Single source of truth for the school's identity and service area.
  *
  * Everything that isn't editable from the admin panel (SEO keyword defaults,
- * generated meta suggestions, location page titles) reads from here — so
+ * generated meta suggestions, location page titles) reads from here - so
  * changing the town the school covers is a one-line edit in this file.
  *
  * Live contact details (phone, email, address, hours) are NOT here: those are

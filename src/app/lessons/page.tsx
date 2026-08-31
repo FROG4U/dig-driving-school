@@ -140,7 +140,7 @@ export default async function Lessons() {
               <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)" }}>pick the shape that fits you</h2>
             </div>
             <p style={{ color: "#94a5c0", maxWidth: "42ch", fontSize: "1rem", lineHeight: 1.7 }}>
-              Take it hour by hour, or book a 10-hour block — in a manual or automatic car. Every
+              Take it hour by hour, or book a 10-hour block - in a manual or automatic car. Every
               option includes door-to-door pick-up from wherever you are.
             </p>
           </div>
@@ -221,7 +221,7 @@ export default async function Lessons() {
         </div>
       </section>
 
-      {/* ══ ADD-ONS — numbered rows on paper ════════════════════ */}
+      {/* ══ ADD-ONS - numbered rows on paper ════════════════════ */}
       <section style={{ background: "#f4f6fa", color: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.7rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#5a6b86", marginBottom: "1.25rem" }}>

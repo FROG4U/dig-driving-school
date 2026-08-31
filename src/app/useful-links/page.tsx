@@ -9,7 +9,7 @@ import Icon from "@/components/Icon";
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/useful-links", {
     title: `Useful Links for Learner Drivers | ${SITE.name}`,
-    description: `Every official link a learner driver needs in one place — apply for a provisional licence, book your theory and practical tests, find your test centre and read the Highway Code. Curated for our pupils in ${SITE.location}.`,
+    description: `Every official link a learner driver needs in one place - apply for a provisional licence, book your theory and practical tests, find your test centre and read the Highway Code. Curated for our pupils in ${SITE.location}.`,
   });
 }
 
@@ -38,7 +38,7 @@ const groups: LinkGroup[] = [
       {
         icon: "clipboard",
         title: "Apply for your provisional licence",
-        desc: "The very first step. Apply through the DVLA — have your National Insurance number and a passport-style photo ready.",
+        desc: "The very first step. Apply through the DVLA - have your National Insurance number and a passport-style photo ready.",
         url: "https://www.gov.uk/apply-first-provisional-driving-licence",
         label: "Apply on GOV.UK",
       },
@@ -60,7 +60,7 @@ const groups: LinkGroup[] = [
       {
         icon: "book",
         title: "Book your theory test",
-        desc: "Theory comes first — you cannot sit the practical without it. Book through the official DVSA service.",
+        desc: "Theory comes first - you cannot sit the practical without it. Book through the official DVSA service.",
         url: "https://www.gov.uk/book-theory-test",
         label: "Book theory test",
       },
@@ -208,12 +208,12 @@ export default async function UsefulLinks() {
               marginTop: "2.5rem",
             }}
           >
-            Official sources only — every link opens in a new tab
+            Official sources only - every link opens in a new tab
           </p>
         </div>
       </section>
 
-      {/* ══ GROUP 01 — void ═════════════════════════════════════ */}
+      {/* ══ GROUP 01 - void ═════════════════════════════════════ */}
       <section style={{ background: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <p className="eyebrow" style={{ marginBottom: "1.25rem" }}>{groups[0].eyebrow}</p>
@@ -231,7 +231,7 @@ export default async function UsefulLinks() {
         </div>
       </section>
 
-      {/* ══ GROUP 02 — ink ══════════════════════════════════════ */}
+      {/* ══ GROUP 02 - ink ══════════════════════════════════════ */}
       <section style={{ background: "#0d1728", padding: "clamp(4.5rem, 10vw, 7.5rem) 0", borderTop: "1px solid #1c2b45", borderBottom: "1px solid #1c2b45" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <p className="eyebrow" style={{ marginBottom: "1.25rem" }}>{groups[1].eyebrow}</p>
@@ -249,7 +249,7 @@ export default async function UsefulLinks() {
         </div>
       </section>
 
-      {/* ══ GROUP 03 — void ═════════════════════════════════════ */}
+      {/* ══ GROUP 03 - void ═════════════════════════════════════ */}
       <section style={{ background: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <p className="eyebrow" style={{ marginBottom: "1.25rem" }}>{groups[2].eyebrow}</p>
@@ -267,7 +267,7 @@ export default async function UsefulLinks() {
         </div>
       </section>
 
-      {/* ══ TOP TIP — paper ═════════════════════════════════════ */}
+      {/* ══ TOP TIP - paper ═════════════════════════════════════ */}
       <section style={{ background: "#f4f6fa", color: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.7rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#5a6b86", marginBottom: "1.25rem" }}>
@@ -287,7 +287,7 @@ export default async function UsefulLinks() {
               <p style={{ color: "#46566f", fontSize: "1rem", lineHeight: 1.75, maxWidth: "62ch" }}>
                 Get your provisional applied for and start on the Highway Code weeks before your first
                 lesson. Pupils who arrive already knowing their signs and rules progress noticeably
-                faster behind the wheel — and they spend less overall, because none of the lesson time
+                faster behind the wheel - and they spend less overall, because none of the lesson time
                 goes on things a free PDF could have taught them.
               </p>
             </div>

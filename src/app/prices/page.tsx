@@ -33,7 +33,7 @@ const notes = [
   "Every price includes the use of our dual-control car, fully insured and maintained.",
 ];
 
-/** Dark price list — rows separated by rules, price right-aligned in volt. */
+/** Dark price list - rows separated by rules, price right-aligned in volt. */
 function PriceList({
   rows,
   title,

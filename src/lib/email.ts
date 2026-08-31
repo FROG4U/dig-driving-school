@@ -3,7 +3,7 @@ import { Resend } from "resend";
 // Sender must be an address on a domain verified in Resend.
 const FROM = process.env.EMAIL_FROM || "Dig Driving School <onboarding@resend.dev>";
 
-// Dig's inbox — receives enquiry notifications and is the reply-to on
+// Dig's inbox - receives enquiry notifications and is the reply-to on
 // customer-facing emails, so replies land in his Gmail.
 export const OWNER_EMAIL = process.env.OWNER_EMAIL || "";
 
@@ -17,7 +17,7 @@ export function escapeHtml(s: string): string {
 }
 
 /**
- * Send an email via Resend. Never throws — returns a result object so callers
+ * Send an email via Resend. Never throws - returns a result object so callers
  * (e.g. the enquiry form) can carry on even if email isn't configured or fails.
  * `skipped` means no RESEND_API_KEY is set yet.
  */

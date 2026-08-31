@@ -28,7 +28,7 @@ const columns: Column[] = [
     key: "manual",
     icon: "wrench",
     name: "Manual",
-    licence: "Full licence — manual and automatic",
+    licence: "Full licence - manual and automatic",
     tagline: "The one that keeps every door open.",
     pros: [
       "Your licence covers both manual and automatic cars",
@@ -38,7 +38,7 @@ const columns: Column[] = [
       "A genuine skill, and a satisfying one to master",
     ],
     cons: [
-      "More to learn at once — clutch, gears and biting point",
+      "More to learn at once - clutch, gears and biting point",
       "The first few lessons can feel busier for some learners",
       "Most people need a few more hours to reach test standard",
     ],
@@ -50,14 +50,14 @@ const columns: Column[] = [
     licence: "Automatic-only licence",
     tagline: "The one that gets you focused on the road faster.",
     pros: [
-      "Nothing to coordinate — no clutch, no gear changes",
+      "Nothing to coordinate - no clutch, no gear changes",
       "More headspace for road awareness and hazard planning",
       "Plenty of learners get to test standard in fewer hours",
       "Often the right call if a disability or mobility issue is a factor",
       "Modern automatics are smooth and genuinely nice to drive",
     ],
     cons: [
-      "Automatic-only — you cannot legally drive a manual on it",
+      "Automatic-only - you cannot legally drive a manual on it",
       "Lessons and the cars themselves usually cost a little more",
       "Fewer automatics at the cheap end of the used market",
     ],
@@ -67,7 +67,7 @@ const columns: Column[] = [
 const advice = [
   {
     q: "Which one should we put you in?",
-    a: "For most people manual is the better long-term bet, simply because it leaves every option open afterwards. But if the coordination side is a real struggle, or you need to be on the road quickly, automatic is a completely legitimate choice — not a shortcut.",
+    a: "For most people manual is the better long-term bet, simply because it leaves every option open afterwards. But if the coordination side is a real struggle, or you need to be on the road quickly, automatic is a completely legitimate choice - not a shortcut.",
   },
   {
     q: "Does manual actually take longer?",
@@ -227,7 +227,7 @@ export default async function AutoVsManual() {
         </div>
       </section>
 
-      {/* ══ OUR ADVICE — numbered rows on paper ═════════════════ */}
+      {/* ══ OUR ADVICE - numbered rows on paper ═════════════════ */}
       <section style={{ background: "#f4f6fa", color: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.7rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#5a6b86", marginBottom: "1.25rem" }}>
@@ -281,7 +281,7 @@ export default async function AutoVsManual() {
               {
                 icon: "shield",
                 title: "Pass in a manual",
-                desc: "You can drive anything in the category — manual or automatic — from the day you pass. Nothing else to sit, nothing else to pay for.",
+                desc: "You can drive anything in the category - manual or automatic - from the day you pass. Nothing else to sit, nothing else to pay for.",
               },
               {
                 icon: "automatic",
@@ -291,7 +291,7 @@ export default async function AutoVsManual() {
               {
                 icon: "refresh",
                 title: "Upgrading later",
-                desc: "It is a full practical test again, plus the lessons to get you there. Doable, but it is the expensive route — better to choose well now.",
+                desc: "It is a full practical test again, plus the lessons to get you there. Doable, but it is the expensive route - better to choose well now.",
               },
             ].map((item, i) => (
               <div key={item.title} className="card card-accent" style={{ padding: "2rem 1.75rem" }}>

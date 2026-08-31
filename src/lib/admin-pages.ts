@@ -22,7 +22,7 @@ const contentPages: AdminPage[] = [
 ];
 
 /**
- * Location landing pages targeted for local SEO. These are SEO records first —
+ * Location landing pages targeted for local SEO. These are SEO records first -
  * you can write and store meta for a town before the page itself is built.
  * Driven by SITE so changing the service area updates every admin screen.
  */

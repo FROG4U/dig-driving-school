@@ -41,7 +41,7 @@ export default function ReplyBox({ id, to }: { id: string; to: string }) {
       <textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder="Write your reply here — it will be emailed to the customer, and replies come back to your inbox."
+        placeholder="Write your reply here - it will be emailed to the customer, and replies come back to your inbox."
         style={{ width: "100%", minHeight: "120px", padding: "0.75rem", border: "1px solid #c3c4c7", borderRadius: "6px", fontSize: "0.9rem", fontFamily: "inherit", resize: "vertical", boxSizing: "border-box", color: "#1d2327" }}
       />
       <div style={{ display: "flex", alignItems: "center", gap: "0.85rem", marginTop: "0.6rem" }}>

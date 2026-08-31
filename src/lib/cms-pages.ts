@@ -61,7 +61,7 @@ export const cmsPages: CmsPage[] = [
       overlay: 55,
       eyebrow: "WHAT WE TEACH",
       heading: "driving lessons",
-      subheading: "From your very first lesson to test day — every stage covered, at a pace that suits you.",
+      subheading: "From your very first lesson to test day - every stage covered, at a pace that suits you.",
     },
   },
   {
@@ -133,7 +133,7 @@ export const cmsPages: CmsPage[] = [
       overlay: 55,
       eyebrow: "HELPFUL RESOURCES",
       heading: "useful links",
-      subheading: "Everything you need — from applying for your provisional licence to booking your theory and practical tests.",
+      subheading: "Everything you need - from applying for your provisional licence to booking your theory and practical tests.",
     },
   },
 ];

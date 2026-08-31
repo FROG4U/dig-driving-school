@@ -11,7 +11,7 @@ import Icon from "@/components/Icon";
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/about", {
     title: `About Us | DVSA-Approved Driving Instructor ${SITE.location}`,
-    description: `Meet the team behind Dig Driving School in ${SITE.location}. Over 8 years of patient, structured tuition — manual and automatic lessons, 7 days a week.`,
+    description: `Meet the team behind Dig Driving School in ${SITE.location}. Over 8 years of patient, structured tuition - manual and automatic lessons, 7 days a week.`,
   });
 }
 
@@ -102,7 +102,7 @@ export default async function About() {
         </div>
       </section>
 
-      {/* ══ WHO WE ARE — split with photo ═══════════════════════ */}
+      {/* ══ WHO WE ARE - split with photo ═══════════════════════ */}
       <section style={{ background: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
         <div
           className="max-w-[1240px] mx-auto px-5 grid gap-12 items-center"
@@ -158,12 +158,12 @@ export default async function About() {
               patience, structure, and a car that feels calm rather than tense.
             </p>
             <p style={{ color: "#94a5c0", fontSize: "1rem", lineHeight: 1.75, marginBottom: "1.15rem" }}>
-              We shape every lesson around the person in the driver&apos;s seat — whether that&apos;s a
+              We shape every lesson around the person in the driver&apos;s seat - whether that&apos;s a
               complete beginner touching the controls for the first time, or someone with a test booked
               who needs to sharpen two or three specific things.
             </p>
             <p style={{ color: "#eef2f9", fontSize: "1rem", lineHeight: 1.75, marginBottom: "2.25rem" }}>
-              We teach 7 days a week, evenings and weekends included, at no extra cost — and we&apos;ll
+              We teach 7 days a week, evenings and weekends included, at no extra cost - and we&apos;ll
               collect you from home, work, college or school.
             </p>
 
@@ -178,7 +178,7 @@ export default async function About() {
         </div>
       </section>
 
-      {/* ══ CREDENTIALS — numbered rows on paper ════════════════ */}
+      {/* ══ CREDENTIALS - numbered rows on paper ════════════════ */}
       <section style={{ background: "#f4f6fa", color: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.7rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#5a6b86", marginBottom: "1.25rem" }}>

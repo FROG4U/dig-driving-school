@@ -390,7 +390,7 @@ export default function CompetitorsClient() {
                           {/* Keyword phrases (bigrams + trigrams) */}
                           {(bigrams.length > 0 || trigrams.length > 0) && (
                             <div style={{ gridColumn: "1 / -1" }}>
-                              <SectionLabel>Keyword Phrases (2–3 word)</SectionLabel>
+                              <SectionLabel>Keyword Phrases (2-3 word)</SectionLabel>
                               <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
                                 {[...trigrams.slice(0, 5).map((t) => ({ t, type: "tri" })), ...bigrams.slice(0, 12).map((b) => ({ t: b, type: "bi" }))].map(({ t, type }, i) => (
                                   <span key={i} style={{

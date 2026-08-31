@@ -132,7 +132,7 @@ export default function Navbar({ logoUrl }: { logoUrl?: string }) {
           </div>
 
           {/* ── Mobile toggle ── */}
-          {/* Wrapped so the responsive class controls display — an inline
+          {/* Wrapped so the responsive class controls display - an inline
               `display` on the button itself would override the utility. */}
           <div className="xl:hidden">
           <button

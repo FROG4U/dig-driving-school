@@ -7,7 +7,7 @@ import PWARegister from "@/components/PWARegister";
 import { getBrandingSettings, getSearchSettings } from "@/lib/site-settings";
 import { SITE } from "@/lib/site-config";
 
-// Montserrat drives the whole site — a clean, modern, geometric sans used for
+// Montserrat drives the whole site - a clean, modern, geometric sans used for
 // both headings and body. JetBrains Mono is kept only for the small
 // uppercase "eyebrow" labels, where a monospace reads as intentional.
 const montserrat = Montserrat({

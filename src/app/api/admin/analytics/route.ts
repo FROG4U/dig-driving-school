@@ -92,7 +92,7 @@ export async function GET() {
   const uniqueSessions = (views: { sessionId: string }[]) =>
     new Set(views.map((v) => v.sessionId)).size;
 
-  // ── Hourly chart for today (0–23) ────────────────────────
+  // ── Hourly chart for today (0-23) ────────────────────────
   const hourlyData = Array.from({ length: 24 }, (_, h) => {
     const count = todayViews.filter((v) => new Date(v.createdAt).getHours() === h).length;
     const sessions = new Set(

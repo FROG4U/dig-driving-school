@@ -10,7 +10,7 @@ import Icon from "@/components/Icon";
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/qa", {
     title: `Driving Lesson FAQs ${SITE.location} | ${SITE.name}`,
-    description: `Answers to the questions we get asked most in ${SITE.location} — what lessons cost, how many hours you'll need, booking and cancelling, manual versus automatic, and what happens on test day.`,
+    description: `Answers to the questions we get asked most in ${SITE.location} - what lessons cost, how many hours you'll need, booking and cancelling, manual versus automatic, and what happens on test day.`,
   });
 }
 
@@ -25,11 +25,11 @@ const faqs: Category[] = [
     questions: [
       {
         q: "How old do I need to be to start lessons?",
-        a: "You need to be 17 to drive on a public road in the UK. You can apply for your provisional licence from 15 years and 9 months, so it is worth getting that in early — it will be sitting in a drawer waiting for your birthday.",
+        a: "You need to be 17 to drive on a public road in the UK. You can apply for your provisional licence from 15 years and 9 months, so it is worth getting that in early - it will be sitting in a drawer waiting for your birthday.",
       },
       {
         q: "Do I need my provisional licence before the first lesson?",
-        a: "Yes. You must hold a valid UK provisional before you can legally drive on the road, so bring it with you to your first lesson — we cannot start without it.",
+        a: "Yes. You must hold a valid UK provisional before you can legally drive on the road, so bring it with you to your first lesson - we cannot start without it.",
       },
       {
         q: "What should I bring?",
@@ -37,7 +37,7 @@ const faqs: Category[] = [
       },
       {
         q: "I'm really nervous. Is that a problem?",
-        a: "Not remotely — it is closer to the norm than the exception. We start somewhere quiet and go at whatever pace keeps you thinking clearly, and we don't move to busier roads until that first bit feels easy.",
+        a: "Not remotely - it is closer to the norm than the exception. We start somewhere quiet and go at whatever pace keeps you thinking clearly, and we don't move to busier roads until that first bit feels easy.",
       },
     ],
   },
@@ -52,7 +52,7 @@ const faqs: Category[] = [
       },
       {
         q: "How long is a lesson?",
-        a: "One or two hours. Most people get on better with two — there is time to warm up, work on something properly and still consolidate it before you finish. We will tell you honestly what suits you.",
+        a: "One or two hours. Most people get on better with two - there is time to warm up, work on something properly and still consolidate it before you finish. We will tell you honestly what suits you.",
       },
       {
         q: "Can I have lessons in the evening or at the weekend?",
@@ -87,7 +87,7 @@ const faqs: Category[] = [
       },
       {
         q: "Is there an offer for new pupils?",
-        a: "Yes — a discounted introductory block covering your first two lessons, in manual or automatic. It is the cheapest way to find out whether we are a good fit before committing to anything longer. Current prices are on the prices page.",
+        a: "Yes - a discounted introductory block covering your first two lessons, in manual or automatic. It is the cheapest way to find out whether we are a good fit before committing to anything longer. Current prices are on the prices page.",
       },
     ],
   },
@@ -98,7 +98,7 @@ const faqs: Category[] = [
     questions: [
       {
         q: "When am I ready to book my test?",
-        a: "We will tell you when we think you are consistently driving to the standard. Don't let anyone push you into booking early — but equally, don't sit on it once you are there.",
+        a: "We will tell you when we think you are consistently driving to the standard. Don't let anyone push you into booking early - but equally, don't sit on it once you are there.",
       },
       {
         q: "Can I use the school car for my test?",
@@ -284,7 +284,7 @@ export default async function QA() {
         </div>
       </section>
 
-      {/* ══ 01 + 02 — void ══════════════════════════════════════ */}
+      {/* ══ 01 + 02 - void ══════════════════════════════════════ */}
       <section style={{ background: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
         <div className="max-w-[1240px] mx-auto px-5" style={{ display: "grid", gap: "clamp(3.5rem, 8vw, 5.5rem)" }}>
           {faqs.slice(0, 2).map((cat, i) => (
@@ -296,7 +296,7 @@ export default async function QA() {
         </div>
       </section>
 
-      {/* ══ 03 — paper ══════════════════════════════════════════ */}
+      {/* ══ 03 - paper ══════════════════════════════════════════ */}
       <section style={{ background: "#f4f6fa", color: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <CategoryHead cat={faqs[2]} index={3} tone="paper" />
@@ -310,7 +310,7 @@ export default async function QA() {
         </div>
       </section>
 
-      {/* ══ 04 — ink ════════════════════════════════════════════ */}
+      {/* ══ 04 - ink ════════════════════════════════════════════ */}
       <section style={{ background: "#0d1728", padding: "clamp(4.5rem, 10vw, 7.5rem) 0", borderTop: "1px solid #1c2b45", borderBottom: "1px solid #1c2b45" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <CategoryHead cat={faqs[3]} index={4} tone="dark" />

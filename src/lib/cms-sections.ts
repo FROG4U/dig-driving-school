@@ -55,7 +55,7 @@ const homeServices: SectionSchema = {
   defaults: {
     eyebrow: "WHAT WE OFFER",
     heading: "every kind of learner, covered",
-    subtext: "Complete beginner or coming back after years off the road — there's a lesson plan built around where you actually are.",
+    subtext: "Complete beginner or coming back after years off the road - there's a lesson plan built around where you actually are.",
     items: [
       { icon: "car", title: "Beginner lessons", desc: "Start from absolutely nothing. Structured, progressive lessons that build confidence before they build speed." },
       { icon: "automatic", title: "Automatic tuition", desc: "No clutch, no gears, no stalling. Put all your attention into road position, observation and hazard awareness." },
@@ -142,7 +142,7 @@ const homeCta: SectionSchema = {
   },
 };
 
-// Numbered "how it works" strip — a signature block on the homepage.
+// Numbered "how it works" strip - a signature block on the homepage.
 const homeProcess: SectionSchema = {
   key: "process",
   title: "How it works",
@@ -219,7 +219,7 @@ const homeSeo: SectionSchema = {
     eyebrow: `Driving lessons in ${SITE.location} & Hartpury`,
     heading: `Your local driving school in ${SITE.location} and Hartpury`,
     body: `Dig Driving School provides friendly, professional driving lessons in ${SITE.location}, Hartpury and across ${SITE.county}. Whether you're a complete beginner booking your very first lesson or a nervous driver coming back after a break, our DVSA-approved driving instructor teaches both manual and automatic driving lessons at a pace that suits you.`,
-    body2: `We offer manual and automatic driving lessons, refresher sessions and theory test support — all with door-to-door pick-up, seven days a week. With structured lessons and a genuine focus on helping you pass your driving test first time, we get learner drivers across ${SITE.location} on the road with confidence. 10-hour block bookings are available.`,
+    body2: `We offer manual and automatic driving lessons, refresher sessions and theory test support - all with door-to-door pick-up, seven days a week. With structured lessons and a genuine focus on helping you pass your driving test first time, we get learner drivers across ${SITE.location} on the road with confidence. 10-hour block bookings are available.`,
   },
 };
 

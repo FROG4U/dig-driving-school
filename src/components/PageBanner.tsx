@@ -3,7 +3,7 @@ import { getBanner, bannerBg, type BannerData } from "@/lib/content";
 const DEFAULT_BG = "linear-gradient(160deg, #0d1728 0%, #070d18 60%)";
 
 /**
- * Standard page hero — left-aligned, grid backdrop, content-managed via the
+ * Standard page hero - left-aligned, grid backdrop, content-managed via the
  * "banner" section. Used by pages (e.g. the client-rendered contact/enquiry
  * forms) that render their banner from a server layout rather than inline.
  */

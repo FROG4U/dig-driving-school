@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
       data: { fullName, contactNumber, email, location, message },
     });
 
-    // Emails are best-effort — the enquiry is already saved, so never fail the
+    // Emails are best-effort - the enquiry is already saved, so never fail the
     // request if sending errors or isn't configured yet.
     try {
       // 1) Notify Dig (reply-to the customer so he can reply straight back).
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
         `,
       });
     } catch {
-      // ignore — enquiry is safely saved regardless
+      // ignore - enquiry is safely saved regardless
     }
 
     return NextResponse.json({ success: true, id: enquiry.id });

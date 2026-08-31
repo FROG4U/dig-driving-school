@@ -9,14 +9,14 @@ import Icon from "@/components/Icon";
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/theory-test", {
     title: `Theory Test Help ${SITE.location} | ${SITE.name}`,
-    description: `Everything you need to pass the DVSA theory test first time — how the multiple choice and hazard perception sections work, what the pass marks are, and how we help our pupils in ${SITE.location} revise.`,
+    description: `Everything you need to pass the DVSA theory test first time - how the multiple choice and hazard perception sections work, what the pass marks are, and how we help our pupils in ${SITE.location} revise.`,
   });
 }
 
 const facts: [string, string][] = [
   ["Cost", "£23"],
-  ["Multiple choice", "50 questions — pass mark 43"],
-  ["Hazard perception", "14 clips — pass mark 44 of 75"],
+  ["Multiple choice", "50 questions - pass mark 43"],
+  ["Hazard perception", "14 clips - pass mark 44 of 75"],
   ["Total duration", "Around 57 minutes"],
   ["Certificate valid for", "2 years"],
   ["Minimum age", "17"],
@@ -31,7 +31,7 @@ const topics = [
   {
     icon: "target",
     title: "Hazard perception",
-    desc: "Video clips with instant feedback, in exactly the format you will meet on the day — including the anti-cheat scoring.",
+    desc: "Video clips with instant feedback, in exactly the format you will meet on the day - including the anti-cheat scoring.",
   },
   {
     icon: "clipboard",
@@ -51,7 +51,7 @@ const topics = [
   {
     icon: "phone",
     title: "Any device",
-    desc: "Phone, tablet or laptop. Nothing to install — log in on the bus and get ten minutes done.",
+    desc: "Phone, tablet or laptop. Nothing to install - log in on the bus and get ten minutes done.",
   },
 ];
 
@@ -66,7 +66,7 @@ const tips = [
   },
   {
     tip: "Treat hazard perception as its own skill",
-    detail: "It has a technique. Click the moment a hazard starts developing, not when it is obvious — and do not spam clicks, the system zeroes the clip.",
+    detail: "It has a technique. Click the moment a hazard starts developing, not when it is obvious - and do not spam clicks, the system zeroes the clip.",
   },
   {
     tip: "Only use official material",
@@ -136,7 +136,7 @@ export default async function TheoryTest() {
               two halves, one sitting
             </h2>
             <p style={{ color: "#94a5c0", fontSize: "1rem", lineHeight: 1.75, marginBottom: "1.25rem" }}>
-              The DVSA theory test is a multiple choice section — 50 questions, 43 to pass — followed
+              The DVSA theory test is a multiple choice section - 50 questions, 43 to pass - followed
               by hazard perception, which is 14 video clips scored out of 75 with a pass mark of 44.
               You have to clear both in the same appointment; passing one and failing the other means
               sitting the whole thing again.
@@ -148,7 +148,7 @@ export default async function TheoryTest() {
             </p>
             <p style={{ color: "#94a5c0", fontSize: "1rem", lineHeight: 1.75, marginBottom: "2.25rem" }}>
               Our advice is simple: book it near the start of your lessons and revise little and often.
-              Theory and practical reinforce each other — the road signs make far more sense once you
+              Theory and practical reinforce each other - the road signs make far more sense once you
               have driven past a few of them.
             </p>
             <Link href="/enquiry" className="btn btn-ghost">Ask us about revision</Link>
@@ -195,7 +195,7 @@ export default async function TheoryTest() {
               <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)" }}>theory test pro</h2>
             </div>
             <p style={{ color: "#94a5c0", maxWidth: "42ch", fontSize: "1rem", lineHeight: 1.7 }}>
-              Our intensive course pupils get free access to Theory Test Pro — the online prep
+              Our intensive course pupils get free access to Theory Test Pro - the online prep
               platform built on the official DVSA bank and used by driving schools nationwide.
             </p>
           </div>
@@ -253,7 +253,7 @@ export default async function TheoryTest() {
         </div>
       </section>
 
-      {/* ══ TIPS — numbered rows on paper ═══════════════════════ */}
+      {/* ══ TIPS - numbered rows on paper ═══════════════════════ */}
       <section style={{ background: "#f4f6fa", color: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.7rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#5a6b86", marginBottom: "1.25rem" }}>

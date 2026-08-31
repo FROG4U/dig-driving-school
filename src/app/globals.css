@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   DIG DRIVING SCHOOL — "Night Shift" design system
+   DIG DRIVING SCHOOL - "Night Shift" design system
    Deep navy base drawn from the logo, with the logo's orange as the
    action colour and its blue as the structural accent.
    Lowercase display type, pill controls, oversized numerals.
    ═══════════════════════════════════════════════════════════════ */
 
 @theme inline {
-  /* Core surfaces — deep navy, layered */
+  /* Core surfaces - deep navy, layered */
   --color-dig-void: #070d18;
   --color-dig-ink: #0d1728;
   --color-dig-surface: #131f34;
   --color-dig-raised: #1c2b45;
   --color-dig-line: #24354f;
 
-  /* Action colour — logo orange */
+  /* Action colour - logo orange */
   --color-dig-orange: #f47c20;
   --color-dig-orange-dim: #d2661a;
 
-  /* Structural accent — logo blue */
+  /* Structural accent - logo blue */
   --color-dig-blue: #1b5cb8;
   --color-dig-blue-light: #2f7ae0;
   --color-dig-blue-deep: #0e3a73;
@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-/* Headings render in Title Case — every word starts with a capital. The source
+/* Headings render in Title Case - every word starts with a capital. The source
    heading text is written lowercase, so `capitalize` produces the casing. */
 .site-public h1,
 .site-public h2,
@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #1c2b45;
 }
 
-/* Secondary action in the logo's blue — used where orange would compete. */
+/* Secondary action in the logo's blue - used where orange would compete. */
 .btn-blue {
   background: #1b5cb8;
   color: #ffffff;
@@ -203,7 +203,7 @@ h1, h2, h3, h4, h5, h6 {
   background-size: 62px 62px;
 }
 
-/* Radial spotlight behind hero content — blue wash with an orange core,
+/* Radial spotlight behind hero content - blue wash with an orange core,
    mirroring the two colours in the logo. */
 .spotlight::before {
   content: "";

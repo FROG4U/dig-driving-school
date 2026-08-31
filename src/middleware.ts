@@ -28,7 +28,7 @@ export async function middleware(request: NextRequest) {
   if (!request.nextUrl.pathname.startsWith("/admin")) return NextResponse.next();
 
   // The login page lives at /dds, outside the /admin tree, so every /admin/*
-  // path reaching this point is protected — no path exclusion needed.
+  // path reaching this point is protected - no path exclusion needed.
   const token = request.cookies.get("dds_admin_token")?.value;
 
   if (!token) {

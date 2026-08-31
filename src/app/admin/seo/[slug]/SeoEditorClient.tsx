@@ -203,7 +203,7 @@ export default function SeoEditorClient({
               <input value={form.metaTitle} onChange={(e) => update("metaTitle", e.target.value)}
                 placeholder={`e.g. Driving Lessons in ${SITE.location} | Dig Driving School`} maxLength={80}
                 style={{ width: "100%", padding: "0.55rem 0.75rem", border: `1px solid ${titleScore === "good" ? "#b8dfc0" : "#c3c4c7"}`, borderRadius: "3px", fontSize: "0.9rem", color: "#1d2327", backgroundColor: "#fff", boxSizing: "border-box" }} />
-              <div style={{ fontSize: "0.72rem", color: "#8c8f94", marginTop: "0.3rem" }}>Ideal: 50–60 chars. Include your main keyword + location. Appears in Google and browser tab.</div>
+              <div style={{ fontSize: "0.72rem", color: "#8c8f94", marginTop: "0.3rem" }}>Ideal: 50-60 chars. Include your main keyword + location. Appears in Google and browser tab.</div>
             </div>
 
             {/* Meta Description */}
@@ -220,7 +220,7 @@ export default function SeoEditorClient({
               <textarea value={form.metaDesc} onChange={(e) => update("metaDesc", e.target.value)} rows={3} maxLength={200}
                 placeholder={`e.g. Book professional driving lessons in ${SITE.location} with Dig. Flexible hours, competitive prices, high pass rates.`}
                 style={{ width: "100%", padding: "0.55rem 0.75rem", border: `1px solid ${descScore === "good" ? "#b8dfc0" : "#c3c4c7"}`, borderRadius: "3px", fontSize: "0.9rem", color: "#1d2327", backgroundColor: "#fff", resize: "vertical", boxSizing: "border-box" }} />
-              <div style={{ fontSize: "0.72rem", color: "#8c8f94", marginTop: "0.3rem" }}>Ideal: 140–160 chars. Write to make people want to click. Include your keyword naturally.</div>
+              <div style={{ fontSize: "0.72rem", color: "#8c8f94", marginTop: "0.3rem" }}>Ideal: 140-160 chars. Write to make people want to click. Include your keyword naturally.</div>
             </div>
 
             {/* H1 */}
@@ -333,9 +333,9 @@ export default function SeoEditorClient({
             <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "#50575e", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.85rem" }}>SEO Checklist</div>
             {[
               { label: "Meta title set", check: form.metaTitle.length >= 30 },
-              { label: "Title good length (30–65)", check: form.metaTitle.length >= 30 && form.metaTitle.length <= 65 },
+              { label: "Title good length (30-65)", check: form.metaTitle.length >= 30 && form.metaTitle.length <= 65 },
               { label: "Meta description set", check: form.metaDesc.length >= 100 },
-              { label: "Description good length (100–165)", check: form.metaDesc.length >= 100 && form.metaDesc.length <= 165 },
+              { label: "Description good length (100-165)", check: form.metaDesc.length >= 100 && form.metaDesc.length <= 165 },
               { label: "H1 heading set", check: form.h1.length > 0 },
               { label: "Focus keyword set", check: form.focusKeyword.length > 0 },
               { label: "Keyword in title", check: keywordAppearsIn(form.focusKeyword, form.metaTitle) },

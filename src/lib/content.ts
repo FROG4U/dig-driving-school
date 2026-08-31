@@ -6,7 +6,7 @@ export interface BannerData {
   heading?: string;
   subheading?: string;
   imageUrl?: string;
-  /** Darkness of the tint laid over the background image, 0–90 (%). */
+  /** Darkness of the tint laid over the background image, 0-90 (%). */
   overlay?: number;
 }
 

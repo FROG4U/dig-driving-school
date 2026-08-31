@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-// Scrolling strip under the hero — pure decoration, no CMS needed.
+// Scrolling strip under the hero - pure decoration, no CMS needed.
 const marqueeWords = [
   "manual & automatic",
   "dvsa approved",
@@ -49,7 +49,7 @@ export default async function Home() {
 
   return (
     <>
-      {/* ══ HERO — full-bleed photo, left copy, stats bar at foot ══ */}
+      {/* ══ HERO - full-bleed photo, left copy, stats bar at foot ══ */}
       <section
         className={heroImage ? "" : "grid-bg spotlight"}
         style={{
@@ -65,7 +65,7 @@ export default async function Home() {
           flexDirection: "column",
         }}
       >
-        {/* Copy — vertically centred in the space above the stats bar */}
+        {/* Copy - vertically centred in the space above the stats bar */}
         <div
           className="max-w-[1240px] mx-auto px-5"
           style={{
@@ -114,7 +114,7 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Stats bar — full width along the foot of the hero */}
+        {/* Stats bar - full width along the foot of the hero */}
         <div
           style={{
             position: "relative",
@@ -181,7 +181,7 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* ══ LOCAL SEO BLURB — intro directly under the hero ═════ */}
+      {/* ══ LOCAL SEO BLURB - intro directly under the hero ═════ */}
       <section style={{ background: "#f4f6fa", color: "#070d18", padding: "clamp(4.5rem, 10vw, 7rem) 0" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.7rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#c2610f", marginBottom: "1.25rem" }}>
@@ -196,7 +196,7 @@ export default async function Home() {
             <p style={{ color: "#46566f", fontSize: "1rem", lineHeight: 1.8 }}>{seoSec.body2}</p>
           </div>
 
-          {/* Areas we cover — a strong local-SEO signal, driven by site-config */}
+          {/* Areas we cover - a strong local-SEO signal, driven by site-config */}
           <div style={{ marginTop: "2.75rem", paddingTop: "2.25rem", borderTop: "1px solid rgba(7,13,24,0.12)" }}>
             <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#5a6b86", marginBottom: "1rem" }}>
               Areas we cover
@@ -267,7 +267,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ══ PROCESS — numbered rows on paper ════════════════════ */}
+      {/* ══ PROCESS - numbered rows on paper ════════════════════ */}
       <section style={{ background: "#f4f6fa", color: "#070d18", padding: "clamp(4.5rem, 10vw, 7.5rem) 0" }}>
         <div className="max-w-[1240px] mx-auto px-5">
           <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.7rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#5a6b86", marginBottom: "1.25rem" }}>
@@ -321,7 +321,7 @@ export default async function Home() {
             </h2>
             <p style={{ color: "#94a5c0", fontSize: "1rem", lineHeight: 1.75, marginBottom: "1.25rem" }}>
               Plenty of instructors can teach you to operate a car. The harder part is teaching you
-              to trust yourself on a busy roundabout at 8am — and that only happens when lessons
+              to trust yourself on a busy roundabout at 8am - and that only happens when lessons
               are calm, structured and honest about what still needs work.
             </p>
             <p style={{ color: "#94a5c0", fontSize: "1rem", lineHeight: 1.75, marginBottom: "2.25rem" }}>
