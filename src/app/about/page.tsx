@@ -11,7 +11,7 @@ import Icon from "@/components/Icon";
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/about", {
     title: `About Us | DVSA-Approved Driving Instructor ${SITE.location}`,
-    description: `Meet the team behind Dig Driving School in ${SITE.location}. Over 8 years of patient, structured tuition - manual and automatic lessons, 7 days a week.`,
+    description: `Meet the team behind DIG Driving School in ${SITE.location}. Over 8 years of patient, structured tuition - manual and automatic lessons, 7 days a week.`,
   });
 }
 
@@ -122,7 +122,7 @@ export default async function About() {
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={photo}
-                alt="Dig Driving School instructor"
+                alt="DIG Driving School instructor"
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", minHeight: "420px" }}
               />
             ) : (

@@ -17,8 +17,8 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     : [];
 
   return {
-    name: "Dig Driving School",
-    short_name: "Dig DS",
+    name: "DIG Driving School",
+    short_name: "DIG DS",
     description: "Modern driving lessons with a DVSA-approved instructor. Manual and automatic, 7 days a week.",
     start_url: "/",
     scope: "/",

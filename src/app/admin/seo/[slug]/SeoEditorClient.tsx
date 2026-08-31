@@ -114,7 +114,7 @@ export default function SeoEditorClient({
   const titleScore = charScore(form.metaTitle, 30, 60, 65);
   const descScore = charScore(form.metaDesc, 100, 155, 165);
 
-  const previewTitle = form.metaTitle || `${pageTitle} | Dig Driving School`;
+  const previewTitle = form.metaTitle || `${pageTitle} | DIG Driving School`;
   const previewDesc = form.metaDesc || `Professional driving lessons in ${SITE.location} and surrounding areas.`;
   // Show the real domain - a hardcoded one made the preview a poor guide to how
   // the snippet actually looks in Google.
@@ -201,7 +201,7 @@ export default function SeoEditorClient({
                 </div>
               </div>
               <input value={form.metaTitle} onChange={(e) => update("metaTitle", e.target.value)}
-                placeholder={`e.g. Driving Lessons in ${SITE.location} | Dig Driving School`} maxLength={80}
+                placeholder={`e.g. Driving Lessons in ${SITE.location} | DIG Driving School`} maxLength={80}
                 style={{ width: "100%", padding: "0.55rem 0.75rem", border: `1px solid ${titleScore === "good" ? "#b8dfc0" : "#c3c4c7"}`, borderRadius: "3px", fontSize: "0.9rem", color: "#1d2327", backgroundColor: "#fff", boxSizing: "border-box" }} />
               <div style={{ fontSize: "0.72rem", color: "#8c8f94", marginTop: "0.3rem" }}>Ideal: 50-60 chars. Include your main keyword + location. Appears in Google and browser tab.</div>
             </div>
@@ -218,7 +218,7 @@ export default function SeoEditorClient({
                 </div>
               </div>
               <textarea value={form.metaDesc} onChange={(e) => update("metaDesc", e.target.value)} rows={3} maxLength={200}
-                placeholder={`e.g. Book professional driving lessons in ${SITE.location} with Dig. Flexible hours, competitive prices, high pass rates.`}
+                placeholder={`e.g. Book professional driving lessons in ${SITE.location} with DIG. Flexible hours, competitive prices, high pass rates.`}
                 style={{ width: "100%", padding: "0.55rem 0.75rem", border: `1px solid ${descScore === "good" ? "#b8dfc0" : "#c3c4c7"}`, borderRadius: "3px", fontSize: "0.9rem", color: "#1d2327", backgroundColor: "#fff", resize: "vertical", boxSizing: "border-box" }} />
               <div style={{ fontSize: "0.72rem", color: "#8c8f94", marginTop: "0.3rem" }}>Ideal: 140-160 chars. Write to make people want to click. Include your keyword naturally.</div>
             </div>
@@ -384,7 +384,7 @@ export default function SeoEditorClient({
                 `Include your location (e.g. '${SITE.location}') in title & H1`,
                 "Use competitor phrases from the Keyword Bank",
                 "Make meta title under 60 chars to avoid being cut off",
-                "Write descriptions that explain why Dig is better",
+                "Write descriptions that explain why DIG is better",
                 "Each location page needs its own unique description",
               ].map((tip) => (
                 <li key={tip} style={{ fontSize: "0.78rem", color: "#50575e", lineHeight: 1.5 }}>{tip}</li>

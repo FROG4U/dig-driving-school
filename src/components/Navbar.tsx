@@ -58,7 +58,7 @@ export default function Navbar({ logoUrl }: { logoUrl?: string }) {
               /* eslint-disable-next-line @next/next/no-img-element */
               <img
                 src={logoUrl}
-                alt="Dig Driving School"
+                alt="DIG Driving School"
                 style={{ height: "54px", width: "auto", display: "block" }}
               />
             ) : (
@@ -77,7 +77,7 @@ export default function Navbar({ logoUrl }: { logoUrl?: string }) {
                 </span>
                 <span style={{ display: "flex", flexDirection: "column", lineHeight: 1.05 }}>
                   <span style={{ color: "#eef2f9", fontFamily: "var(--font-montserrat), sans-serif", fontWeight: 700, fontSize: "1.15rem", letterSpacing: "-0.04em" }}>
-                    dig
+                    DIG
                   </span>
                   <span style={{ color: "#94a5c0", fontFamily: "var(--font-mono), monospace", fontSize: "0.53rem", letterSpacing: "0.19em", textTransform: "uppercase" }}>
                     Driving School

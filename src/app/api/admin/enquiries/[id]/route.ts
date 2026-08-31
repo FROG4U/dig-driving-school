@@ -25,11 +25,11 @@ export async function POST(
   const result = await sendEmail({
     to: enquiry.email,
     replyTo: OWNER_EMAIL || undefined,
-    subject: "Re: your enquiry - Dig Driving School",
+    subject: "Re: your enquiry - DIG Driving School",
     html: `
       <p>Hi ${escapeHtml(firstName)},</p>
       <div style="white-space:pre-wrap">${escapeHtml(message)}</div>
-      <p>Kind regards,<br/>Dig<br/>Dig Driving School, ${SITE.location}</p>
+      <p>Kind regards,<br/>DIG<br/>DIG Driving School, ${SITE.location}</p>
     `,
   });
 

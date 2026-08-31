@@ -9,7 +9,7 @@ import Icon from "@/components/Icon";
 
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/prices", {
-    title: `Driving Lesson Prices ${SITE.location} | Dig Driving School`,
+    title: `Driving Lesson Prices ${SITE.location} | DIG Driving School`,
     description: `Clear driving lesson prices in ${SITE.location}. Manual lessons £35/hr, automatic £40/hr. 10-hour block bookings available. Door-to-door pick-up, seven days a week.`,
   });
 }

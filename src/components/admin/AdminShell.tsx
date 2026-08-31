@@ -88,7 +88,7 @@ export default function AdminShell({ children, adminName, adminRole }: Props) {
   const sidebarContent = (
     <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
       <div style={{ padding: "1.1rem 1rem 1rem", borderBottom: "1px solid #3c434a" }}>
-        <div style={{ fontSize: "0.92rem", fontWeight: 700, color: "#fff", lineHeight: 1.2 }}>Dig Driving School</div>
+        <div style={{ fontSize: "0.92rem", fontWeight: 700, color: "#fff", lineHeight: 1.2 }}>DIG Driving School</div>
         <div style={{ fontSize: "0.68rem", color: "#8c8f94", marginTop: "0.2rem", textTransform: "uppercase", letterSpacing: "0.04em" }}>Admin Panel</div>
       </div>
 
@@ -125,7 +125,7 @@ export default function AdminShell({ children, adminName, adminRole }: Props) {
         boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
       }}>
         <span style={{ color: "#a7aaad", fontSize: "0.8rem", fontWeight: 500, display: "flex", alignItems: "center", gap: "0.4rem" }}>
-          <Icon name="car" size={14} strokeWidth={1.8} /> Dig Driving School
+          <Icon name="car" size={14} strokeWidth={1.8} /> DIG Driving School
         </span>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <a

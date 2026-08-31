@@ -35,7 +35,7 @@ export const cmsPages: CmsPage[] = [
       imageUrl: "/banners/about.jpg",
       overlay: 55,
       eyebrow: "WHO YOU'LL BE LEARNING WITH",
-      heading: "about dig driving school",
+      heading: "about DIG driving school",
       subheading: "Fully qualified, DVSA-approved instruction with a modern, no-pressure approach to learning.",
     },
   },

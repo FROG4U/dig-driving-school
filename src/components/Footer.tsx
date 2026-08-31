@@ -183,7 +183,7 @@ export default async function Footer() {
             whiteSpace: "nowrap",
           }}
         >
-          dig driving
+          DIG driving
         </div>
       </div>
 
@@ -203,7 +203,7 @@ export default async function Footer() {
           fontFamily: "var(--font-mono), monospace",
         }}
       >
-        <span>© {new Date().getFullYear()} Dig Driving School</span>
+        <span>© {new Date().getFullYear()} DIG Driving School</span>
         <span>DVSA approved instruction</span>
       </div>
     </footer>

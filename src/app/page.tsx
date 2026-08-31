@@ -9,7 +9,7 @@ import Icon from "@/components/Icon";
 
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/", {
-    title: "Dig Driving School | DVSA-Approved Driving Instructor",
+    title: "DIG Driving School | DVSA-Approved Driving Instructor",
     description:
       "Manual and automatic driving lessons with a DVSA-approved instructor. Door-to-door pick-up 7 days a week, honest pricing, and a focus on passing first time.",
   });
@@ -362,7 +362,7 @@ export default async function Home() {
           >
             {aboutImage ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={aboutImage} alt="Dig Driving School instructor" style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: "380px" }} />
+              <img src={aboutImage} alt="DIG Driving School instructor" style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: "380px" }} />
             ) : (
               <div className="grid-bg" style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "0.85rem", color: "#35496a" }}>
                 <Icon name="car" size={44} />

@@ -10,7 +10,7 @@
  */
 export const SITE = {
   /** Brand name as it appears in titles and meta descriptions. */
-  name: "Dig Driving School",
+  name: "DIG Driving School",
   /** Primary town / city the school operates in. */
   location: "Gloucester",
   /** Wider county or region used for county-level SEO pages. */

@@ -35,11 +35,11 @@ export async function generateMetadata(): Promise<Metadata> {
     // Google Search Console ownership check. The code is pasted into
     // Admin -> Settings, so verifying the site needs no code change.
     verification: search.googleVerification ? { google: search.googleVerification } : undefined,
-    title: "Dig Driving School",
+    title: "DIG Driving School",
     description: "Modern driving lessons with a DVSA-approved instructor. Manual and automatic tuition, 7 days a week. Book your first lesson today.",
     // Installable web-app (PWA) so it can be added to the home screen.
     manifest: "/manifest.webmanifest",
-    appleWebApp: { capable: true, title: "Dig DS", statusBarStyle: "black-translucent" },
+    appleWebApp: { capable: true, title: "DIG DS", statusBarStyle: "black-translucent" },
     // Uploaded logo icon → favicon + home-screen (Apple touch) icon.
     icons: branding.iconUrl ? { icon: branding.iconUrl, apple: branding.iconUrl } : undefined,
   };

@@ -7,9 +7,9 @@ import Icon from "@/components/Icon";
 
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/enquiry", {
-    title: "Book Driving Lessons | Dig Driving School",
+    title: "Book Driving Lessons | DIG Driving School",
     description:
-      "Book your driving lessons with Dig Driving School. Quick enquiry form - we'll get back to you within 24 hours. Manual and automatic lessons, 7 days a week.",
+      "Book your driving lessons with DIG Driving School. Quick enquiry form - we'll get back to you within 24 hours. Manual and automatic lessons, 7 days a week.",
   });
 }
 

@@ -58,7 +58,7 @@ export default function AdminLogin() {
           <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "56px", height: "56px", backgroundColor: "#1d2327", borderRadius: "8px", marginBottom: "1rem" }}>
             <span style={{ fontSize: "1.6rem" }}>🚗</span>
           </div>
-          <h1 style={{ fontSize: "1.3rem", fontWeight: 700, color: "#1d2327", margin: 0 }}>Dig Driving School</h1>
+          <h1 style={{ fontSize: "1.3rem", fontWeight: 700, color: "#1d2327", margin: 0 }}>DIG Driving School</h1>
           <p style={{ color: "#50575e", fontSize: "0.82rem", margin: "0.3rem 0 0" }}>Admin Panel</p>
         </div>
 

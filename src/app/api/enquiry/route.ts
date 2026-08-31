@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     // Emails are best-effort - the enquiry is already saved, so never fail the
     // request if sending errors or isn't configured yet.
     try {
-      // 1) Notify Dig (reply-to the customer so he can reply straight back).
+      // 1) Notify DIG (reply-to the customer so he can reply straight back).
       if (OWNER_EMAIL) {
         await sendEmail({
           to: OWNER_EMAIL,
@@ -37,16 +37,16 @@ export async function POST(req: NextRequest) {
         });
       }
 
-      // 2) Auto-reply to the customer (reply-to Dig's inbox).
+      // 2) Auto-reply to the customer (reply-to DIG's inbox).
       await sendEmail({
         to: email,
         replyTo: OWNER_EMAIL || undefined,
-        subject: "Thanks for your enquiry - Dig Driving School",
+        subject: "Thanks for your enquiry - DIG Driving School",
         html: `
           <p>Hi ${escapeHtml(String(fullName).split(" ")[0] || fullName)},</p>
-          <p>Thanks for getting in touch with Dig Driving School. Dig will be in
+          <p>Thanks for getting in touch with DIG Driving School. DIG will be in
           touch within 24 hours to confirm availability and arrange your first lesson.</p>
-          <p>Kind regards,<br/>Dig Driving School, ${SITE.location}</p>
+          <p>Kind regards,<br/>DIG Driving School, ${SITE.location}</p>
         `,
       });
     } catch {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Admin - Dig Driving School",
+  title: "Admin - DIG Driving School",
   robots: "noindex, nofollow",
 };
 

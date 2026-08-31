@@ -1,9 +1,9 @@
 import { Resend } from "resend";
 
 // Sender must be an address on a domain verified in Resend.
-const FROM = process.env.EMAIL_FROM || "Dig Driving School <onboarding@resend.dev>";
+const FROM = process.env.EMAIL_FROM || "DIG Driving School <onboarding@resend.dev>";
 
-// Dig's inbox - receives enquiry notifications and is the reply-to on
+// DIG's inbox - receives enquiry notifications and is the reply-to on
 // customer-facing emails, so replies land in his Gmail.
 export const OWNER_EMAIL = process.env.OWNER_EMAIL || "";
 

@@ -26,7 +26,7 @@ const CONTENT_CONFIGS: Record<string, PageConfig> = {
     defaultH2s: [
       `Professional Driving Tuition in ${SITE.county}`,
       "Manual & Automatic Lessons Available",
-      "Why Choose Dig Driving School?",
+      "Why Choose DIG Driving School?",
       "Driving Lesson Prices",
       "Areas We Cover",
       "What Our Students Say",
@@ -42,7 +42,7 @@ const CONTENT_CONFIGS: Record<string, PageConfig> = {
     defaultH2s: [
       "About Your Instructor",
       "Qualifications & Experience",
-      "Dig's Teaching Approach",
+      "DIG's Teaching Approach",
       `Serving ${SITE.location} & Surrounding Areas`,
     ],
     extraKeywords: [`DVSA approved instructor ${SITE.location.toLowerCase()}`, `driving instructor ${SITE.location.toLowerCase()}`, "qualified driving teacher", `ADI ${SITE.location.toLowerCase()}`],
@@ -272,31 +272,31 @@ function pickKeywords(
 function buildTitle(cfg: typeof PAGE_CONFIGS[string]): string {
   const loc = cfg.location || `${SITE.county}`;
   if (cfg.pageType === "location") {
-    const t = `Driving Lessons in ${loc} | Dig Driving School`;
+    const t = `Driving Lessons in ${loc} | DIG Driving School`;
     return truncate(t, 65);
   }
   if (cfg.pageType === "homepage") {
     // Written from the page, not from a scraped phrase - a competitor's brand
     // name used to land here whenever their site ranked highest in the scan.
-    const t = `Driving Lessons in ${loc} | Dig Driving School`;
+    const t = `Driving Lessons in ${loc} | DIG Driving School`;
     return truncate(t, 65);
   }
-  if (cfg.pageType === "prices") return truncate(`Driving Lesson Prices ${loc} | Dig Driving School`, 65);
+  if (cfg.pageType === "prices") return truncate(`Driving Lesson Prices ${loc} | DIG Driving School`, 65);
   if (cfg.pageType === "about") return truncate(`DVSA-Approved Driving Instructor ${loc} | About Us`, 65);
-  if (cfg.pageType === "theory") return truncate(`Theory Test Help ${loc} | Dig Driving School`, 65);
-  if (cfg.pageType === "qa") return truncate(`Driving Lesson FAQs ${loc} | Dig Driving School`, 65);
-  if (cfg.pageType === "contact") return truncate(`Book Driving Lessons ${loc} | Contact Dig`, 65);
-  if (cfg.pageType === "enquiry") return truncate(`Book Your Driving Lessons in ${loc} | Dig Driving School`, 65);
-  if (cfg.pageType === "lessons") return truncate(`Driving Lessons ${loc} | Manual & Automatic | Dig`, 65);
-  if (cfg.pageType === "links") return truncate(`Useful Links For Learner Drivers in ${loc} | Dig`, 65);
-  if (cfg.pageType === "auto-manual") return truncate(`Automatic vs Manual Lessons ${loc} | Dig Driving School`, 65);
-  return truncate(`${cfg.name} | Dig Driving School ${loc}`, 65);
+  if (cfg.pageType === "theory") return truncate(`Theory Test Help ${loc} | DIG Driving School`, 65);
+  if (cfg.pageType === "qa") return truncate(`Driving Lesson FAQs ${loc} | DIG Driving School`, 65);
+  if (cfg.pageType === "contact") return truncate(`Book Driving Lessons ${loc} | Contact DIG`, 65);
+  if (cfg.pageType === "enquiry") return truncate(`Book Your Driving Lessons in ${loc} | DIG Driving School`, 65);
+  if (cfg.pageType === "lessons") return truncate(`Driving Lessons ${loc} | Manual & Automatic | DIG`, 65);
+  if (cfg.pageType === "links") return truncate(`Useful Links For Learner Drivers in ${loc} | DIG`, 65);
+  if (cfg.pageType === "auto-manual") return truncate(`Automatic vs Manual Lessons ${loc} | DIG Driving School`, 65);
+  return truncate(`${cfg.name} | DIG Driving School ${loc}`, 65);
 }
 
 /**
  * Meta descriptions are written for the page, not assembled from scraped
  * phrases. Splicing a competitor keyword into a sentence produced both broken
- * grammar ("Request driving school with Dig Driving School") and, worse, a
+ * grammar ("Request driving school with DIG Driving School") and, worse, a
  * rival's brand name in our own Google snippet ("offering bravo driving 7 days
  * a week"). Every template names the town and the service, so a good local
  * keyword is present without any string surgery.
@@ -305,14 +305,14 @@ function buildDescription(cfg: typeof PAGE_CONFIGS[string]): string {
   const loc = cfg.location || `${SITE.county}`;
 
   const templates: Record<string, string> = {
-    homepage: `Learning to drive in ${loc}? Dig Driving School offers manual and automatic driving lessons 7 days a week, with competitive prices and a high pass rate.`,
-    location: `Book driving lessons in ${loc} with Dig - a DVSA-approved driving instructor. Manual and automatic tuition, flexible hours and door-to-door pick-up.`,
+    homepage: `Learning to drive in ${loc}? DIG Driving School offers manual and automatic driving lessons 7 days a week, with competitive prices and a high pass rate.`,
+    location: `Book driving lessons in ${loc} with DIG - a DVSA-approved driving instructor. Manual and automatic tuition, flexible hours and door-to-door pick-up.`,
     prices: `See our driving lesson prices in ${loc}. Manual and automatic lessons, block-booking discounts and intensive courses from a DVSA-approved driving school.`,
-    about: `Meet Dig - a DVSA-approved driving instructor in ${loc}, teaching manual and automatic driving lessons to nervous beginners and returning drivers alike.`,
-    theory: `Theory test help for learner drivers in ${loc}. Hazard perception, multiple choice and Highway Code revision tips from Dig Driving School to help you pass.`,
+    about: `Meet DIG - a DVSA-approved driving instructor in ${loc}, teaching manual and automatic driving lessons to nervous beginners and returning drivers alike.`,
+    theory: `Theory test help for learner drivers in ${loc}. Hazard perception, multiple choice and Highway Code revision tips from DIG Driving School to help you pass.`,
     qa: `Answers to common driving lesson questions in ${loc} - what lessons cost, how many you need, booking your test and what to expect from your instructor.`,
-    contact: `Contact Dig Driving School in ${loc} to book driving lessons or ask a question. Call or use the online form - we reply within 24 hours, 7 days a week.`,
-    enquiry: `Book driving lessons in ${loc} with Dig Driving School. Fill in the quick enquiry form and we will reply within 24 hours to arrange your first lesson.`,
+    contact: `Contact DIG Driving School in ${loc} to book driving lessons or ask a question. Call or use the online form - we reply within 24 hours, 7 days a week.`,
+    enquiry: `Book driving lessons in ${loc} with DIG Driving School. Fill in the quick enquiry form and we will reply within 24 hours to arrange your first lesson.`,
     lessons: `Manual and automatic driving lessons in ${loc} with a DVSA-approved instructor. Hourly lessons, 10-hour blocks, refresher courses and theory test support.`,
     links: `Useful links for learner drivers in ${loc}: apply for a provisional licence, book your theory and practical tests, find a test centre and read the Highway Code.`,
     "auto-manual": `Automatic or manual driving lessons in ${loc}? We compare the costs, the licence rules and how long each takes so you can pick the right one first time.`,
@@ -320,7 +320,7 @@ function buildDescription(cfg: typeof PAGE_CONFIGS[string]): string {
 
   const desc =
     templates[cfg.pageType] ||
-    `${cfg.name} at Dig Driving School in ${loc}. DVSA-approved driving lessons, manual and automatic, available 7 days a week. Book your first lesson today.`;
+    `${cfg.name} at DIG Driving School in ${loc}. DVSA-approved driving lessons, manual and automatic, available 7 days a week. Book your first lesson today.`;
   return truncate(desc, 160);
 }
 
