@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/site-config";
 import { cmsPages } from "@/lib/cms-pages";
 
-const BASE_URL = "https://drivinginstructorgloucester.co.uk";
+const BASE_URL = SITE.url;
 
 // Pages we don't want in Google's index. /lessons used to sit here as an
 // "orphaned duplicate of /prices", but it is linked from the main navigation
