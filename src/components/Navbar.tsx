@@ -52,20 +52,15 @@ export default function Navbar({ logoUrl }: { logoUrl?: string }) {
           {/* ── Wordmark ── */}
           <Link href="/" className="bare" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.65rem" }} onClick={() => setMenuOpen(false)}>
             {logoUrl ? (
-              /* The brand logo is drawn for a light background, so it sits on a
-                 white plate here rather than directly on the navy bar. */
-              <span
-                style={{
-                  background: "#ffffff",
-                  borderRadius: "12px",
-                  padding: "0.35rem 0.6rem",
-                  display: "inline-flex",
-                  alignItems: "center",
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={logoUrl} alt="Dig Driving School" style={{ height: "42px", width: "auto" }} />
-              </span>
+              /* The logo artwork is drawn FOR a dark background - its "Driving
+                 School" wordmark is white - so it sits straight on the navy bar.
+                 Do not put it on a white plate: the wordmark disappears. */
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={logoUrl}
+                alt="Dig Driving School"
+                style={{ height: "46px", width: "auto", display: "block" }}
+              />
             ) : (
               <>
                 <span
