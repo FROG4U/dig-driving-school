@@ -3,8 +3,10 @@ import { cmsPages } from "@/lib/cms-pages";
 
 const BASE_URL = "https://drivinginstructorgloucester.co.uk";
 
-// Pages we don't want in Google's index (orphaned duplicate of /prices).
-const EXCLUDE = new Set(["/lessons"]);
+// Pages we don't want in Google's index. /lessons used to sit here as an
+// "orphaned duplicate of /prices", but it is linked from the main navigation
+// and has its own content and SEO, so leaving it out just hid a real page.
+const EXCLUDE = new Set<string>([]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

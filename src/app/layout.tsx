@@ -4,7 +4,8 @@ import "./globals.css";
 import ConditionalLayout from "@/components/ConditionalLayout";
 import Footer from "@/components/Footer";
 import PWARegister from "@/components/PWARegister";
-import { getBrandingSettings } from "@/lib/site-settings";
+import { getBrandingSettings, getSearchSettings } from "@/lib/site-settings";
+import { SITE } from "@/lib/site-config";
 
 // Montserrat drives the whole site — a clean, modern, geometric sans used for
 // both headings and body. JetBrains Mono is kept only for the small
@@ -28,9 +29,12 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const branding = await getBrandingSettings();
+  const [branding, search] = await Promise.all([getBrandingSettings(), getSearchSettings()]);
   return {
-    metadataBase: new URL("https://drivinginstructorgloucester.co.uk"),
+    metadataBase: new URL(SITE.url),
+    // Google Search Console ownership check. The code is pasted into
+    // Admin -> Settings, so verifying the site needs no code change.
+    verification: search.googleVerification ? { google: search.googleVerification } : undefined,
     title: "Dig Driving School",
     description: "Modern driving lessons with a DVSA-approved instructor. Manual and automatic tuition, 7 days a week. Book your first lesson today.",
     // Installable web-app (PWA) so it can be added to the home screen.

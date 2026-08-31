@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     data: Record<string, string>;
   };
 
-  if (!["contact", "social", "branding"].includes(section)) {
+  if (!["contact", "social", "branding", "search"].includes(section)) {
     return NextResponse.json({ error: "Invalid section" }, { status: 400 });
   }
 

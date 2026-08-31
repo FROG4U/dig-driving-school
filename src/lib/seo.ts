@@ -25,10 +25,14 @@ export async function getPageMetadata(slug: string, defaults: SeoDefaults): Prom
   return {
     title,
     description,
+    // Tell Google which URL is the canonical one for this page, so www and
+    // non-www (and any ?utm= variants) consolidate instead of competing.
+    alternates: { canonical: slug === "/" ? "/" : slug },
     openGraph: {
       title,
       description,
       type: "website",
+      url: slug === "/" ? "/" : slug,
     },
   };
 }

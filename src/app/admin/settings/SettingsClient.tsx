@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Icon from "@/components/Icon";
-import type { ContactSettings, SocialSettings, BrandingSettings } from "@/lib/site-settings";
+import type { ContactSettings, SocialSettings, BrandingSettings, SearchSettings } from "@/lib/site-settings";
 
 const contactFields: { key: keyof ContactSettings; label: string; type?: string }[] = [
   { key: "address", label: "Address" },
@@ -79,19 +79,22 @@ interface Props {
   contact: ContactSettings;
   social: SocialSettings;
   branding: BrandingSettings;
+  search: SearchSettings;
 }
 
-export default function SettingsClient({ contact: initContact, social: initSocial, branding: initBranding }: Props) {
+export default function SettingsClient({ contact: initContact, social: initSocial, branding: initBranding, search: initSearch }: Props) {
   const [contactData, setContactData] = useState(initContact);
   const [socialData, setSocialData] = useState(initSocial);
   const [brandingData, setBrandingData] = useState(initBranding);
+  const [searchData, setSearchData] = useState(initSearch);
   const [contactState, setContactState] = useState<SaveState>("idle");
   const [socialState, setSocialState] = useState<SaveState>("idle");
   const [brandingState, setBrandingState] = useState<SaveState>("idle");
+  const [searchState, setSearchState] = useState<SaveState>("idle");
 
   async function save(
-    section: "contact" | "social" | "branding",
-    data: ContactSettings | SocialSettings | BrandingSettings,
+    section: "contact" | "social" | "branding" | "search",
+    data: ContactSettings | SocialSettings | BrandingSettings | SearchSettings,
     setState: (s: SaveState) => void
   ) {
     setState("saving");
@@ -200,6 +203,35 @@ export default function SettingsClient({ contact: initContact, social: initSocia
           state={brandingState}
           label="Save Branding"
           onClick={() => save("branding", brandingData, setBrandingState)}
+        />
+      </div>
+
+      {/* Google Search Console */}
+      <div style={cardStyle}>
+        <h2 style={{ fontSize: "1rem", fontWeight: 700, color: "#1d2327", marginBottom: "0.3rem" }}>
+          Google Search Console
+        </h2>
+        <p style={{ fontSize: "0.8rem", color: "#646970", marginBottom: "1.25rem" }}>
+          To submit your site to Google you first have to prove you own it. In Search Console choose
+          <strong> HTML tag</strong> as the verification method, copy the long code out of the tag it shows you,
+          paste it below and save. Then go back to Google and press Verify.
+        </p>
+        <div>
+          <label style={labelStyle}>Verification code</label>
+          <input
+            style={inputStyle}
+            value={searchData.googleVerification}
+            onChange={(e) => setSearchData((p) => ({ ...p, googleVerification: e.target.value.trim() }))}
+            placeholder="e.g. Ab12Cd34_EfGh56IjKl78MnOp90QrSt12UvWx34"
+          />
+          <div style={{ fontSize: "0.72rem", color: "#8c8f94", marginTop: "0.3rem" }}>
+            Just the code itself, not the whole &lt;meta&gt; tag. Leave blank to remove the tag.
+          </div>
+        </div>
+        <SaveButton
+          state={searchState}
+          label="Save Verification"
+          onClick={() => save("search", searchData, setSearchState)}
         />
       </div>
 

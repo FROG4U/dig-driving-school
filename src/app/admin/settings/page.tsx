@@ -2,16 +2,17 @@ import { getAdminUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import AdminShell from "@/components/admin/AdminShell";
 import SettingsClient from "./SettingsClient";
-import { getContactSettings, getSocialSettings, getBrandingSettings } from "@/lib/site-settings";
+import { getContactSettings, getSocialSettings, getBrandingSettings, getSearchSettings } from "@/lib/site-settings";
 
 export default async function SettingsPage() {
   const user = await getAdminUser();
   if (!user) redirect("/dds");
 
-  const [contact, social, branding] = await Promise.all([
+  const [contact, social, branding, search] = await Promise.all([
     getContactSettings(),
     getSocialSettings(),
     getBrandingSettings(),
+    getSearchSettings(),
   ]);
 
   return (
@@ -24,7 +25,7 @@ export default async function SettingsPage() {
           Manage contact information, opening hours and social media links shown across the site.
         </p>
       </div>
-      <SettingsClient contact={contact} social={social} branding={branding} />
+      <SettingsClient contact={contact} social={social} branding={branding} search={search} />
     </AdminShell>
   );
 }

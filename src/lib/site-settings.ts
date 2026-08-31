@@ -22,6 +22,14 @@ export interface BrandingSettings {
   iconUrl: string;
 }
 
+export interface SearchSettings {
+  /**
+   * The content value of Google Search Console's HTML-tag verification method
+   * (the long string, not the whole <meta> tag). Blank = no tag rendered.
+   */
+  googleVerification: string;
+}
+
 export const contactDefaults: ContactSettings = {
   // Placeholders only — the owner overwrites these in Admin → Settings.
   address: "Your area",
@@ -43,6 +51,10 @@ export const brandingDefaults: BrandingSettings = {
   iconUrl: "",
 };
 
+export const searchDefaults: SearchSettings = {
+  googleVerification: "",
+};
+
 export function getContactSettings(): Promise<ContactSettings> {
   return getSection<ContactSettings>("__site__", "contact", contactDefaults);
 }
@@ -53,4 +65,8 @@ export function getSocialSettings(): Promise<SocialSettings> {
 
 export function getBrandingSettings(): Promise<BrandingSettings> {
   return getSection<BrandingSettings>("__site__", "branding", brandingDefaults);
+}
+
+export function getSearchSettings(): Promise<SearchSettings> {
+  return getSection<SearchSettings>("__site__", "search", searchDefaults);
 }
