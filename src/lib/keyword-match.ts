@@ -10,13 +10,19 @@
  */
 const FILLER = new Set(["in", "at", "the", "a", "an", "and", "of", "for", "to", "your", "with", "on", "from"]);
 
+/** Crude singular form, so "driving lesson" and "driving lessons" agree. */
+function singular(word: string): string {
+  return word.length > 3 && word.endsWith("s") && !word.endsWith("ss") ? word.slice(0, -1) : word;
+}
+
 function meaningfulWords(text: string): string[] {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, " ")
     .split(/\s+/)
     .filter(Boolean)
-    .filter((w) => !FILLER.has(w));
+    .filter((w) => !FILLER.has(w))
+    .map(singular);
 }
 
 /** True when every meaningful word of `keyword` appears somewhere in `text`. */

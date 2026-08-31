@@ -31,7 +31,7 @@ const CONTENT_CONFIGS: Record<string, PageConfig> = {
       "Areas We Cover",
       "What Our Students Say",
     ],
-    extraKeywords: [`driving school ${SITE.location.toLowerCase()}`, `learn to drive ${SITE.location.toLowerCase()}`, `driving instructor ${SITE.county.toLowerCase()}`, `automatic driving lessons ${SITE.location.toLowerCase()}`],
+    extraKeywords: [`driving lessons ${SITE.location.toLowerCase()}`, `driving school ${SITE.location.toLowerCase()}`, `learn to drive ${SITE.location.toLowerCase()}`, `driving instructor ${SITE.county.toLowerCase()}`, `automatic driving lessons ${SITE.location.toLowerCase()}`],
   },
   "/about": {
     name: "About Us",
@@ -76,7 +76,7 @@ const CONTENT_CONFIGS: Record<string, PageConfig> = {
       "Block Booking Discounts",
       "What's Included in Your Lesson",
     ],
-    extraKeywords: [`cheap driving lessons ${SITE.location.toLowerCase()}`, `driving lesson cost ${SITE.location.toLowerCase()}`, `intensive driving course ${SITE.location.toLowerCase()}`, "block booking driving lessons"],
+    extraKeywords: [`driving lesson prices ${SITE.location.toLowerCase()}`, `cheap driving lessons ${SITE.location.toLowerCase()}`, `driving lesson cost ${SITE.location.toLowerCase()}`, `intensive driving course ${SITE.location.toLowerCase()}`, "block booking driving lessons"],
   },
   "/auto-vs-manual": {
     name: "Auto vs Manual",
@@ -113,14 +113,14 @@ const CONTENT_CONFIGS: Record<string, PageConfig> = {
     location: `${SITE.location}`,
     service: "driving lessons FAQ",
     pageType: "qa",
-    defaultH1: "Driving Lesson FAQs - Dig Driving School",
+    defaultH1: `Driving Lesson FAQs in ${SITE.location}`,
     defaultH2s: [
       "Getting Started with Lessons",
       "Booking & Cancellations",
       "Driving Test Questions",
       "Lesson Types & Prices",
     ],
-    extraKeywords: [`driving lesson questions ${SITE.location.toLowerCase()}`, "how many lessons to pass", "when can I book driving test", "driving school FAQ"],
+    extraKeywords: [`driving lessons ${SITE.location.toLowerCase()}`, `driving lesson questions ${SITE.location.toLowerCase()}`, "how many lessons to pass", "when can I book driving test", "driving school FAQ"],
   },
   "/useful-links": {
     name: "Useful Links",
@@ -142,9 +142,9 @@ const CONTENT_CONFIGS: Record<string, PageConfig> = {
     location: `${SITE.location}`,
     service: "contact",
     pageType: "contact",
-    defaultH1: `Contact Dig Driving School - ${SITE.location}`,
+    defaultH1: `Book Driving Lessons in ${SITE.location}`,
     defaultH2s: ["Get in Touch", "Book a Lesson", `Find Us in ${SITE.location}`],
-    extraKeywords: [`book driving lesson ${SITE.location.toLowerCase()}`, `contact driving instructor ${SITE.location.toLowerCase()}`, `driving school contact ${SITE.location.toLowerCase()}`],
+    extraKeywords: [`driving lessons ${SITE.location.toLowerCase()}`, `book driving lesson ${SITE.location.toLowerCase()}`, `contact driving instructor ${SITE.location.toLowerCase()}`, `driving school contact ${SITE.location.toLowerCase()}`],
   },
   "/enquiry": {
     name: "Enquiry",
@@ -202,27 +202,83 @@ function truncate(str: string, max: number): string {
   return str.slice(0, max - 1).replace(/\s+\S*$/, "") + "…";
 }
 
-function pickKeywords(competitorKws: string[], pageKws: string[], slug: string): string[] {
+/** Words that are ours or generic to the trade, so never a rival's brand. */
+const GENERIC_TRADE_WORDS = new Set([
+  "driving", "drive", "driver", "drivers", "school", "schools", "lesson", "lessons",
+  "instructor", "instructors", "academy", "tuition", "test", "tests", "theory",
+  "practical", "manual", "automatic", "learner", "learners", "pass", "dig",
+  "ltd", "limited", "uk", "co", "com", "www", "the", "and", "of", "in", "near", "me",
+]);
+
+/**
+ * Distinctive words from each competitor's name and domain - i.e. their brand.
+ * A scan of bravodriving.co.uk surfaces "bravo driving" as a top phrase, and
+ * without this filter it ended up advertised in our own meta description.
+ */
+function competitorBrandWords(competitors: { name: string; url: string }[]): Set<string> {
+  const brands = new Set<string>();
+  const ours = [SITE.location.toLowerCase(), SITE.county.toLowerCase()];
+
+  for (const c of competitors) {
+    const fromName = c.name.toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/);
+    let host = "";
+    try {
+      host = new URL(c.url).hostname.replace(/^www\./, "").split(".")[0] ?? "";
+    } catch {
+      /* a malformed URL just contributes no host words */
+    }
+    for (const w of [...fromName, host]) {
+      if (w && w.length > 2 && !GENERIC_TRADE_WORDS.has(w) && !ours.includes(w)) brands.add(w);
+    }
+  }
+  return brands;
+}
+
+/** Higher is better: local intent first, then real phrases over bare words. */
+function scoreKeyword(kw: string, location: string): number {
+  const words = kw.toLowerCase().split(/\s+/).filter(Boolean);
+  let score = 0;
+  if (location && kw.toLowerCase().includes(location)) score += 4;
+  if (words.length >= 2 && words.length <= 4) score += 2;
+  if (words.length === 1) score -= 2;
+  if (/lesson|instructor|school|driving|test|theory/.test(kw.toLowerCase())) score += 1;
+  return score;
+}
+
+function pickKeywords(
+  competitorKws: string[],
+  pageKws: string[],
+  slug: string,
+  brandWords: Set<string>
+): string[] {
   const location = PAGE_CONFIGS[slug]?.location?.toLowerCase() ?? "";
-  // Prefer keywords that mention the location or are driving-related
-  const ranked = competitorKws.filter((kw) => {
+
+  const relevant = competitorKws.filter((kw) => {
     const k = kw.toLowerCase();
+    const words = k.replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(Boolean);
+    // Never reuse a rival's brand name in our own copy or keyword list.
+    if (words.some((w) => brandWords.has(w))) return false;
     return k.includes("driving") || k.includes("lesson") || k.includes("instructor") ||
       k.includes("school") || k.includes("test") || k.includes("theory") ||
       (location && k.includes(location));
   });
+
+  const ranked = [...new Set(relevant)].sort((a, b) => scoreKeyword(b, location) - scoreKeyword(a, location));
+  // Page defaults are hand-written for this page, so they rank alongside.
   const combined = [...new Set([...ranked.slice(0, 8), ...pageKws])];
-  return combined.slice(0, 12);
+  return combined.sort((a, b) => scoreKeyword(b, location) - scoreKeyword(a, location)).slice(0, 12);
 }
 
-function buildTitle(cfg: typeof PAGE_CONFIGS[string], topKw: string): string {
+function buildTitle(cfg: typeof PAGE_CONFIGS[string]): string {
   const loc = cfg.location || `${SITE.county}`;
   if (cfg.pageType === "location") {
     const t = `Driving Lessons in ${loc} | Dig Driving School`;
     return truncate(t, 65);
   }
   if (cfg.pageType === "homepage") {
-    const t = `Dig Driving School ${loc} | ${topKw.charAt(0).toUpperCase() + topKw.slice(1)}`;
+    // Written from the page, not from a scraped phrase - a competitor's brand
+    // name used to land here whenever their site ranked highest in the scan.
+    const t = `Driving Lessons in ${loc} | Dig Driving School`;
     return truncate(t, 65);
   }
   if (cfg.pageType === "prices") return truncate(`Driving Lesson Prices ${loc} | Dig Driving School`, 65);
@@ -230,33 +286,41 @@ function buildTitle(cfg: typeof PAGE_CONFIGS[string], topKw: string): string {
   if (cfg.pageType === "theory") return truncate(`Theory Test Help ${loc} | Dig Driving School`, 65);
   if (cfg.pageType === "qa") return truncate(`Driving Lesson FAQs ${loc} | Dig Driving School`, 65);
   if (cfg.pageType === "contact") return truncate(`Book Driving Lessons ${loc} | Contact Dig`, 65);
-  if (cfg.pageType === "enquiry") return truncate(`Book Your Driving Lesson in ${loc} | Dig Driving School`, 65);
+  if (cfg.pageType === "enquiry") return truncate(`Book Your Driving Lessons in ${loc} | Dig Driving School`, 65);
   if (cfg.pageType === "lessons") return truncate(`Driving Lessons ${loc} | Manual & Automatic | Dig`, 65);
-  if (cfg.pageType === "links") return truncate(`Useful Links For Learner Drivers | Dig Driving School`, 65);
+  if (cfg.pageType === "links") return truncate(`Useful Links For Learner Drivers in ${loc} | Dig`, 65);
   if (cfg.pageType === "auto-manual") return truncate(`Automatic vs Manual Lessons ${loc} | Dig Driving School`, 65);
   return truncate(`${cfg.name} | Dig Driving School ${loc}`, 65);
 }
 
-function buildDescription(cfg: typeof PAGE_CONFIGS[string], keywords: string[]): string {
+/**
+ * Meta descriptions are written for the page, not assembled from scraped
+ * phrases. Splicing a competitor keyword into a sentence produced both broken
+ * grammar ("Request driving school with Dig Driving School") and, worse, a
+ * rival's brand name in our own Google snippet ("offering bravo driving 7 days
+ * a week"). Every template names the town and the service, so a good local
+ * keyword is present without any string surgery.
+ */
+function buildDescription(cfg: typeof PAGE_CONFIGS[string]): string {
   const loc = cfg.location || `${SITE.county}`;
-  const kw1 = keywords[0] || `driving lessons ${loc.toLowerCase()}`;
-  const kw2 = keywords[1] || "manual and automatic";
 
   const templates: Record<string, string> = {
-    homepage: `Looking for ${kw1}? Dig is a DVSA-approved instructor offering ${kw2} 7 days a week including evenings & weekends. Competitive prices, high pass rates. Book today.`,
-    location: `Book ${kw1} with Dig - a DVSA-approved driving instructor. ${kw2.charAt(0).toUpperCase() + kw2.slice(1)} available 7 days a week. Flexible hours, local pickup, great pass rates. Enquire now.`,
-    prices: `See Dig's ${kw1} in ${loc}. ${kw2.charAt(0).toUpperCase() + kw2.slice(1)} - manual from £40/hr, automatic from £45/hr. Block bookings save money. DVSA-approved tuition.`,
-    about: `Meet Dig - your local ${kw1} in ${loc}. DVSA-approved ADI with 15+ years experience. ${kw2.charAt(0).toUpperCase() + kw2.slice(1)}, flexible hours, patient tuition.`,
-    theory: `Prepare for your theory test with Dig Driving School ${loc}. Covers ${kw1}: multiple choice, hazard perception & Highway Code. Tips to pass first time.`,
-    qa: `Got questions about ${kw1} in ${loc}? Find answers to the most common driving lesson questions - costs, timings, test booking & more. Dig Driving School.`,
-    contact: `Get in touch with Dig Driving School ${loc}. Book ${kw1}, ask about ${kw2} or request more info. Available 7 days a week - call or use our online form.`,
-    enquiry: `Request ${kw1} with Dig Driving School ${loc}. Fill in our quick enquiry form - we'll get back to you within 24 hours to arrange your first lesson.`,
-    lessons: `Manual and automatic ${kw1} in ${loc} with a DVSA-approved instructor. Hourly lessons, 10-hour blocks, refresher courses and theory test help. Book today.`,
-    links: `Handy links for learner drivers in ${loc}: apply for a provisional licence, book your theory and practical tests, find a test centre and read the Highway Code.`,
-    "auto-manual": `Not sure whether to choose ${kw1} in ${loc}? We explain the pros, cons and costs of both. Manual and automatic lessons available - book with Dig today.`,
+    homepage: `Learning to drive in ${loc}? Dig Driving School offers manual and automatic driving lessons 7 days a week, with competitive prices and a high pass rate.`,
+    location: `Book driving lessons in ${loc} with Dig - a DVSA-approved driving instructor. Manual and automatic tuition, flexible hours and door-to-door pick-up.`,
+    prices: `See our driving lesson prices in ${loc}. Manual and automatic lessons, block-booking discounts and intensive courses from a DVSA-approved driving school.`,
+    about: `Meet Dig - a DVSA-approved driving instructor in ${loc}, teaching manual and automatic driving lessons to nervous beginners and returning drivers alike.`,
+    theory: `Theory test help for learner drivers in ${loc}. Hazard perception, multiple choice and Highway Code revision tips from Dig Driving School to help you pass.`,
+    qa: `Answers to common driving lesson questions in ${loc} - what lessons cost, how many you need, booking your test and what to expect from your instructor.`,
+    contact: `Contact Dig Driving School in ${loc} to book driving lessons or ask a question. Call or use the online form - we reply within 24 hours, 7 days a week.`,
+    enquiry: `Book driving lessons in ${loc} with Dig Driving School. Fill in the quick enquiry form and we will reply within 24 hours to arrange your first lesson.`,
+    lessons: `Manual and automatic driving lessons in ${loc} with a DVSA-approved instructor. Hourly lessons, 10-hour blocks, refresher courses and theory test support.`,
+    links: `Useful links for learner drivers in ${loc}: apply for a provisional licence, book your theory and practical tests, find a test centre and read the Highway Code.`,
+    "auto-manual": `Automatic or manual driving lessons in ${loc}? We compare the costs, the licence rules and how long each takes so you can pick the right one first time.`,
   };
 
-  const desc = templates[cfg.pageType] || `Professional ${kw1} with Dig Driving School ${loc}. DVSA-approved instructor, 7 days a week. Book your lesson today.`;
+  const desc =
+    templates[cfg.pageType] ||
+    `${cfg.name} at Dig Driving School in ${loc}. DVSA-approved driving lessons, manual and automatic, available 7 days a week. Book your first lesson today.`;
   return truncate(desc, 160);
 }
 
@@ -279,8 +343,9 @@ export async function POST(
   // Load competitor keywords from DB
   const competitors = await prisma.competitor.findMany({
     where: { lastScanned: { not: null } },
-    select: { topKeywords: true, name: true },
+    select: { topKeywords: true, name: true, url: true },
   });
+  const brandWords = competitorBrandWords(competitors);
 
   // Extract all competitor single keywords and phrases
   const competitorSingleKws: string[] = [];
@@ -301,24 +366,28 @@ export async function POST(
   const relevantKws = pickKeywords(
     [...competitorPhrases, ...competitorSingleKws],
     cfg.extraKeywords,
-    slug
+    slug,
+    brandWords
   );
 
-  // The H1 is the page's visible headline, so prefer a focus keyword the H1
-  // actually contains - otherwise the page is scored against a phrase that
-  // appears nowhere on it. Falls back to the strongest keyword if none fit.
-  const h1Text = cfg.defaultH1;
-  const focusKeyword =
-    relevantKws.find((kw) => keywordAppearsIn(kw, h1Text)) ||
-    cfg.extraKeywords.find((kw) => keywordAppearsIn(kw, h1Text)) ||
-    relevantKws[0] ||
-    cfg.extraKeywords[0] ||
-    `driving lessons ${cfg.location || `${SITE.location.toLowerCase()}`}`;
-  const topKw = competitorPhrases[0] || cfg.extraKeywords[0] || "driving lessons";
-
-  const metaTitle = buildTitle(cfg, topKw);
-  const metaDesc = buildDescription(cfg, relevantKws);
+  const metaTitle = buildTitle(cfg);
+  const metaDesc = buildDescription(cfg);
   const h1 = cfg.defaultH1;
+
+  // Pick the strongest keyword that actually appears in all three places we are
+  // scored on. Targeting a phrase that is written nowhere on the page is what
+  // dragged pages down to 80% - and it was a fair criticism, not a bad check.
+  const candidates = [...relevantKws, ...cfg.extraKeywords];
+  const focusKeyword =
+    candidates.find(
+      (kw) =>
+        keywordAppearsIn(kw, metaTitle) &&
+        keywordAppearsIn(kw, metaDesc) &&
+        keywordAppearsIn(kw, h1)
+    ) ||
+    candidates.find((kw) => keywordAppearsIn(kw, metaTitle) && keywordAppearsIn(kw, h1)) ||
+    candidates[0] ||
+    `driving lessons ${(cfg.location || SITE.location).toLowerCase()}`;
   const h2s = cfg.defaultH2s;
   const keywords = [...new Set([...relevantKws, ...cfg.extraKeywords])].join(", ");
 
