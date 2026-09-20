@@ -5,6 +5,11 @@ export interface ContactSettings {
   phone: string;
   email: string;
   hours: string;
+  /**
+   * WhatsApp "click to chat" link, shown as the floating chat button.
+   * Either a wa.me link or a plain number; blank hides the button.
+   */
+  whatsapp: string;
 }
 
 export interface SocialSettings {
@@ -36,6 +41,7 @@ export const contactDefaults: ContactSettings = {
   phone: "",
   email: "hello@drivinginstructorgloucester.co.uk",
   hours: "Mon-Sun, 8am-7pm",
+  whatsapp: "https://wa.me/message/DOEW6GCRV4ETA1",
 };
 
 export const socialDefaults: SocialSettings = {
@@ -65,6 +71,23 @@ export function getSocialSettings(): Promise<SocialSettings> {
 
 export function getBrandingSettings(): Promise<BrandingSettings> {
   return getSection<BrandingSettings>("__site__", "branding", brandingDefaults);
+}
+
+/**
+ * Turn whatever is in the WhatsApp setting into a usable link. Accepts a full
+ * wa.me/api link as-is, or a phone number in any human format ("+44 7861
+ * 668669", "07861 668669") which is normalised to international digits.
+ */
+export function whatsappLink(value: string): string {
+  const v = (value || "").trim();
+  if (!v) return "";
+  if (/^https?:\/\//i.test(v)) return v;
+
+  let digits = v.replace(/[^0-9+]/g, "");
+  if (digits.startsWith("+")) digits = digits.slice(1);
+  // A UK number typed as 07861... needs the 0 swapping for the country code.
+  if (digits.startsWith("0")) digits = "44" + digits.slice(1);
+  return digits ? `https://wa.me/${digits}` : "";
 }
 
 export function getSearchSettings(): Promise<SearchSettings> {

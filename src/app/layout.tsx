@@ -4,7 +4,7 @@ import "./globals.css";
 import ConditionalLayout from "@/components/ConditionalLayout";
 import Footer from "@/components/Footer";
 import PWARegister from "@/components/PWARegister";
-import { getBrandingSettings, getSearchSettings } from "@/lib/site-settings";
+import { getBrandingSettings, getSearchSettings, getContactSettings, whatsappLink } from "@/lib/site-settings";
 import { SITE } from "@/lib/site-config";
 
 // Montserrat drives the whole site - a clean, modern, geometric sans used for
@@ -54,7 +54,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const branding = await getBrandingSettings();
+  const [branding, contact] = await Promise.all([getBrandingSettings(), getContactSettings()]);
+  const whatsappHref = whatsappLink(contact.whatsapp);
   return (
     <html
       lang="en"
@@ -62,7 +63,7 @@ export default async function RootLayout({
       style={{ height: "100%" }}
     >
       <body style={{ minHeight: "100%", display: "flex", flexDirection: "column", fontFamily: "var(--font-montserrat), sans-serif", margin: 0 }}>
-        <ConditionalLayout footer={<Footer />} logoUrl={branding.logoUrl || undefined}>{children}</ConditionalLayout>
+        <ConditionalLayout footer={<Footer />} logoUrl={branding.logoUrl || undefined} whatsappHref={whatsappHref}>{children}</ConditionalLayout>
         <PWARegister />
       </body>
     </html>

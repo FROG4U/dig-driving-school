@@ -9,6 +9,7 @@ const contactFields: { key: keyof ContactSettings; label: string; type?: string 
   { key: "phone", label: "Phone Number", type: "tel" },
   { key: "email", label: "Email Address", type: "email" },
   { key: "hours", label: "Opening Hours" },
+  { key: "whatsapp", label: "WhatsApp (link or number - blank hides the chat button)" },
 ];
 
 const socialPlatforms: { key: keyof SocialSettings; label: string; icon: string; placeholder: string }[] = [
