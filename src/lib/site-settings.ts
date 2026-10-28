@@ -38,7 +38,7 @@ export interface SearchSettings {
 export const contactDefaults: ContactSettings = {
   // Placeholders only - the owner overwrites these in Admin → Settings.
   address: "Your area",
-  phone: "",
+  phone: "07861 668669",
   email: "hello@drivinginstructorgloucester.co.uk",
   hours: "Mon-Sun, 8am-7pm",
   whatsapp: "https://wa.me/message/DOEW6GCRV4ETA1",
