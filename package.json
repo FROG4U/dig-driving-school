@@ -9,7 +9,8 @@
     "lint": "eslint",
     "seed": "npx tsx prisma/seed.ts",
     "postinstall": "prisma generate",
-    "deploy": "npx prisma migrate deploy && npm run seed && npm run build && mkdir -p tmp && touch tmp/restart.txt"
+    "deploy": "npx prisma migrate deploy && npm run seed && npm run build && mkdir -p tmp && touch tmp/restart.txt",
+    "seo:generate": "tsx scripts/generate-seo.ts"
   },
   "prisma": {
     "seed": "npx tsx prisma/seed.ts"
