@@ -13,39 +13,46 @@ import { SITE } from "@/lib/site-config";
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/lessons", {
     title: `Driving Lessons in ${SITE.location} | Manual & Automatic`,
-    description: `Manual and automatic driving lessons in ${SITE.location} with a DVSA-approved instructor. Hourly lessons, 10-hour blocks, refresher courses and theory test support.`,
+    description: `Manual and automatic driving lessons in ${SITE.location} with a DVSA-approved instructor. Hourly lessons, blocks of 5 to 30 hours, refresher courses and theory test support.`,
   });
 }
 
 const packages = [
   {
-    name: "Manual lesson",
-    price: "£35",
-    unit: "per hour",
+    name: "First 2 lessons",
+    price: "£60",
+    unit: "2 hours, manual",
     icon: "wrench",
     popular: true,
+    features: ["A 2-hour introductory session", "£70 in an automatic", "Get a feel for the car", "No commitment beyond it"],
+  },
+  {
+    name: "Manual lesson",
+    price: "£40",
+    unit: "per hour",
+    icon: "wrench",
     features: ["Full-control manual car", "1 or 2-hour sessions", "Move at your own pace", "Full feedback every time"],
   },
   {
     name: "Automatic lesson",
-    price: "£40",
+    price: "£45",
     unit: "per hour",
     icon: "automatic",
     features: ["No clutch, no gears", "Focus on road skills", "1 or 2-hour sessions", "Full feedback every time"],
   },
   {
-    name: "Manual 10-hour block",
-    price: "£360",
-    unit: "block booking",
+    name: "Manual blocks",
+    price: "£195",
+    unit: "5 hours, from",
     icon: "calendar",
-    features: ["10 hours pre-paid", "Valid for 3 months", "Book the slots that suit you", "Progress tracked throughout"],
+    features: ["5 hours £195", "10 hours £388", "20 hours £760", "30 hours £1,116"],
   },
   {
-    name: "Automatic 10-hour block",
-    price: "£400",
-    unit: "block booking",
+    name: "Automatic blocks",
+    price: "£220",
+    unit: "5 hours, from",
     icon: "calendar",
-    features: ["10 hours pre-paid", "Valid for 3 months", "Book the slots that suit you", "Progress tracked throughout"],
+    features: ["5 hours £220", "10 hours £437", "20 hours £855", "30 hours £1,256"],
   },
 ];
 
@@ -140,7 +147,7 @@ export default async function Lessons() {
               <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)" }}>pick the shape that fits you</h2>
             </div>
             <p style={{ color: "#94a5c0", maxWidth: "42ch", fontSize: "1rem", lineHeight: 1.7 }}>
-              Take it hour by hour, or book a 10-hour block - in a manual or automatic car. Every
+              Take it hour by hour, or save with a block of 5, 10, 20 or 30 hours - manual or automatic. Every
               option includes door-to-door pick-up from wherever you are.
             </p>
           </div>

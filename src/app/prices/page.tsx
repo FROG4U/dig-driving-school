@@ -10,18 +10,26 @@ import Icon from "@/components/Icon";
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/prices", {
     title: `Driving Lesson Prices ${SITE.location} | DIG Driving School`,
-    description: `Clear driving lesson prices in ${SITE.location}. Manual lessons £35/hr, automatic £40/hr. 10-hour block bookings available. Door-to-door pick-up, seven days a week.`,
+    description: `Clear driving lesson prices in ${SITE.location}. Manual £40/hr, automatic £45/hr, with blocks of 5, 10, 20 and 30 hours. Door-to-door pick-up, seven days a week.`,
   });
 }
 
 const manualStandard = [
-  { label: "Single lesson", price: "£35", note: "per hour" },
-  { label: "10-hour block", price: "£360", note: "block booking" },
+  { label: "First 2 lessons", price: "£60", note: "2 hours - intro offer" },
+  { label: "Standard lesson", price: "£40", note: "per hour" },
+  { label: "Block of 5 lessons", price: "£195", note: "5 hours" },
+  { label: "Block of 10 lessons", price: "£388", note: "10 hours" },
+  { label: "Block of 20 lessons", price: "£760", note: "20 hours" },
+  { label: "Block of 30 lessons", price: "£1,116", note: "30 hours" },
 ];
 
 const autoStandard = [
-  { label: "Single lesson", price: "£40", note: "per hour" },
-  { label: "10-hour block", price: "£400", note: "block booking" },
+  { label: "First 2 lessons", price: "£70", note: "2 hours - intro offer" },
+  { label: "Standard lesson", price: "£45", note: "per hour" },
+  { label: "Block of 5 lessons", price: "£220", note: "5 hours" },
+  { label: "Block of 10 lessons", price: "£437", note: "10 hours" },
+  { label: "Block of 20 lessons", price: "£855", note: "20 hours" },
+  { label: "Block of 30 lessons", price: "£1,256", note: "30 hours" },
 ];
 
 const notes = [
@@ -155,7 +163,7 @@ export default async function Prices() {
               <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)" }}>standard lessons</h2>
             </div>
             <p style={{ color: "#94a5c0", maxWidth: "42ch", fontSize: "1rem", lineHeight: 1.7 }}>
-              Pay lesson by lesson, or book a 10-hour block. Every price already includes us
+              Pay lesson by lesson, or save with a block of 5, 10, 20 or 30 hours. Every price already includes us
               collecting you from wherever you are in {SITE.location}.
             </p>
           </div>

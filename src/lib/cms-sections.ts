@@ -140,7 +140,7 @@ const homeCta: SectionSchema = {
     eyebrow: "GET STARTED TODAY",
     heading: "ready to get behind the wheel?",
     text: "Book your first lesson today. Picked up from your door, seven days a week.",
-    offer: "Manual lessons £35/hr · Automatic £40/hr",
+    offer: "Manual lessons £40/hr · Automatic £45/hr · First 2 hours £60",
   },
 };
 
