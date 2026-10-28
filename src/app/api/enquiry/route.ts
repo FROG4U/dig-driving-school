@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { sendEmail, escapeHtml, OWNER_EMAIL } from "@/lib/email";
 import { SITE } from "@/lib/site-config";
+import { sendPushToAdmins } from "@/lib/push";
 
 export async function POST(req: NextRequest) {
   try {
@@ -14,6 +15,17 @@ export async function POST(req: NextRequest) {
 
     const enquiry = await prisma.enquiry.create({
       data: { fullName, contactNumber, email, location, message },
+    });
+
+    // Push a notification to subscribed admin devices (best-effort, never
+    // throws). The new-enquiry count rides along so the installed app's icon
+    // shows a red badge, like Mail or Messages.
+    const newCount = await prisma.enquiry.count({ where: { status: "new" } }).catch(() => undefined);
+    await sendPushToAdmins({
+      title: "New enquiry",
+      body: `${fullName} - ${location}`,
+      url: `/admin/enquiries/${enquiry.id}`,
+      count: newCount,
     });
 
     // Emails are best-effort - the enquiry is already saved, so never fail the

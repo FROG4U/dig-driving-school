@@ -92,3 +92,12 @@ model MediaAsset {
 
   @@index([createdAt])
 }
+
+model PushSubscription {
+  id         String   @id @default(cuid())
+  endpoint   String   @unique
+  p256dh     String
+  auth       String
+  adminEmail String?
+  createdAt  DateTime @default(now())
+}

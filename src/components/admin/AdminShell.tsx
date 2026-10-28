@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Icon from "@/components/Icon";
+import NotificationToggle from "./NotificationToggle";
 
 interface Props {
   children: React.ReactNode;
@@ -137,6 +138,7 @@ export default function AdminShell({ children, adminName, adminRole }: Props) {
             <Icon name="eye" size={12} strokeWidth={2} /> View Site
           </a>
           <span style={{ color: "#a7aaad", fontSize: "0.78rem" }}>Howdy, {adminName}</span>
+          <NotificationToggle />
           <button onClick={handleLogout} style={{ background: "none", border: "none", color: "#8c8f94", cursor: "pointer", fontSize: "0.75rem", padding: 0 }}>
             Log Out
           </button>
