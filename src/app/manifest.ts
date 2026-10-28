@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
   const branding = await getBrandingSettings();
-  const icon = branding.iconUrl;
+  const icon = branding.iconUrl || "/icon.png";
 
   const icons: MetadataRoute.Manifest["icons"] = icon
     ? [

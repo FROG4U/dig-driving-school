@@ -40,8 +40,9 @@ export async function generateMetadata(): Promise<Metadata> {
     // Installable web-app (PWA) so it can be added to the home screen.
     manifest: "/manifest.webmanifest",
     appleWebApp: { capable: true, title: "DIG DS", statusBarStyle: "black-translucent" },
-    // Uploaded logo icon → favicon + home-screen (Apple touch) icon.
-    icons: branding.iconUrl ? { icon: branding.iconUrl, apple: branding.iconUrl } : undefined,
+    // Uploaded icon wins; otherwise the shield from the logo, bundled at
+    // /icon.png, so the browser tab is never the blank default.
+    icons: { icon: branding.iconUrl || "/icon.png", apple: branding.iconUrl || "/icon.png" },
   };
 }
 

@@ -383,7 +383,14 @@ export default async function Home() {
             {testimonialsSec.heading}
           </h2>
 
-          <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))" }}>
+          <div
+            className="grid gap-4"
+            style={{
+              gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
+              // A single review should sit as one card, not stretch the full width.
+              maxWidth: testimonials.length === 1 ? "620px" : undefined,
+            }}
+          >
             {testimonials.map((t) => (
               <figure key={t.name} className="card" style={{ padding: "2rem 1.75rem", margin: 0, display: "flex", flexDirection: "column" }}>
                 <div style={{ display: "flex", gap: "2px", color: "#f47c20", marginBottom: "1.25rem" }}>

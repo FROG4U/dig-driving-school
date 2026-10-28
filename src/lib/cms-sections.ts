@@ -119,9 +119,6 @@ const homeTestimonials: SectionSchema = {
     items: [
       // Real review, from Facebook, 20 June 2026. Kept word for word.
       { initials: "SW", name: "Shan Weston", location: "Facebook review, June 2026", quote: "Amazing driving instructor!! Calm patient and gives your confidence. 100% recommended." },
-      { initials: "SM", name: "Sarah M.", location: "Passed 2026", quote: "I was genuinely terrified of driving. Never once felt rushed or stupid for asking something twice. Passed first time." },
-      { initials: "JT", name: "James T.", location: "Passed 2026", quote: "Explains the why behind everything instead of just barking instructions. That's what made it click for me." },
-      { initials: "PK", name: "Priya K.", location: "Passed 2025", quote: "The block booking was brilliant value and the structure meant I could actually see myself improving week to week." },
     ],
   },
 };
@@ -183,7 +180,9 @@ const homeAbout: SectionSchema = {
     { key: "imageUrl", label: "Photo of the instructor / car", type: "image" },
   ],
   defaults: {
-    imageUrl: "",
+    // Stand-in so the slot is not an empty panel. Replace with a real photo of
+    // DIG and the car in Admin -> Content, which overrides this.
+    imageUrl: "/banners/home-instructor.jpg",
   },
 };
 
