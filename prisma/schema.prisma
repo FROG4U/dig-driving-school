@@ -101,3 +101,29 @@ model PushSubscription {
   adminEmail String?
   createdAt  DateTime @default(now())
 }
+
+/// One-time 6-digit code emailed at login. Stored hashed, single use, short lived.
+model LoginCode {
+  id        String    @id @default(cuid())
+  adminId   String
+  codeHash  String
+  attempts  Int       @default(0)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([adminId])
+}
+
+/// Password-reset link token. Stored hashed so the database never holds a
+/// usable link, single use, one hour.
+model PasswordReset {
+  id        String    @id @default(cuid())
+  adminId   String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([adminId])
+}

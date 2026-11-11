@@ -65,6 +65,21 @@ export default function AdminsPage() {
     setAdmins((prev) => prev.filter((a) => a.id !== id));
   }
 
+  // Super admin sets a password directly, for when someone has lost access to
+  // the mailbox the reset link would go to.
+  async function setPassword(id: string, name: string) {
+    const pw = prompt(`New password for "${name}".\n\nAt least 10 characters, with a letter and a number.`);
+    if (!pw) return;
+    const res = await fetch(`/api/admin/admins/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password: pw }),
+    });
+    const d = await res.json().catch(() => ({}));
+    if (!res.ok) { alert(d.error || "Could not change the password."); return; }
+    alert(`Password changed for ${name}. Tell them their new password - it is not emailed.`);
+  }
+
   if (loading) return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f0f0f1", display: "flex", alignItems: "center", justifyContent: "center", color: "#50575e" }}>Loading…</div>
   );
@@ -113,6 +128,14 @@ export default function AdminsPage() {
                     </span>
                   </td>
                   <td style={{ padding: "0.75rem 1.25rem 0.75rem 0", textAlign: "right" }}>
+                    {me?.role === "SUPER_ADMIN" && (
+                      <button
+                        onClick={() => setPassword(a.id, a.name)}
+                        style={{ background: "none", border: "none", color: "#2271b1", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600, padding: 0, textDecoration: "underline", marginRight: "0.75rem" }}
+                      >
+                        Set password
+                      </button>
+                    )}
                     {a.id !== me?.id && (
                       <button
                         onClick={() => deleteAdmin(a.id, a.name)}
