@@ -35,7 +35,7 @@ export default function ReplyBox({ id, to }: { id: string; to: string }) {
 
   return (
     <div style={{ borderTop: "1px solid #f0f0f1", marginTop: "1.5rem", paddingTop: "1.25rem" }}>
-      <div style={{ fontSize: "0.78rem", color: "#50575e", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: "0.5rem" }}>
+      <div style={{ fontSize: "0.78rem", color: "#50575e", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: "0.5rem", overflowWrap: "anywhere" }}>
         Reply to {to}
       </div>
       <textarea

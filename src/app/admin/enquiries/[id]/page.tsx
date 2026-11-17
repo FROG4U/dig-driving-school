@@ -37,7 +37,7 @@ export default async function EnquiryDetail({ params }: { params: Promise<{ id: 
         </Link>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "1.25rem", maxWidth: "900px", alignItems: "start" }}>
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-5 items-start" style={{ maxWidth: "900px" }}>
         {/* Main detail card */}
         <div style={{ backgroundColor: "#fff", border: "1px solid #c3c4c7", borderRadius: "3px", boxShadow: "0 1px 1px rgba(0,0,0,0.04)", overflow: "hidden" }}>
           <div style={{ padding: "0.85rem 1.25rem", borderBottom: "1px solid #f0f0f1", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -55,7 +55,7 @@ export default async function EnquiryDetail({ params }: { params: Promise<{ id: 
             ].map(([label, value]) => (
               <div key={label} style={{ display: "flex", marginBottom: "0.85rem", gap: "1rem" }}>
                 <div style={{ width: "130px", fontSize: "0.78rem", color: "#50575e", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.04em", flexShrink: 0, paddingTop: "0.1rem" }}>{label}</div>
-                <div style={{ fontSize: "0.9rem", color: "#1d2327", flex: 1 }}>{value}</div>
+                <div style={{ fontSize: "0.9rem", color: "#1d2327", flex: 1, minWidth: 0, overflowWrap: "anywhere" }}>{value}</div>
               </div>
             ))}
 
